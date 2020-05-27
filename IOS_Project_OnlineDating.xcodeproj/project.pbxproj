@@ -1,0 +1,871 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A07FBF2335387BC027C2E58 /* Pods_IOS_Project_OnlineDatingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CE21AB45B8483CC24B85D3 /* Pods_IOS_Project_OnlineDatingTests.framework */; };
+		3F58108A247B793E00A3709F /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F581089247B793E00A3709F /* TopView.swift */; };
+		3F58108C247B798C00A3709F /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58108B247B798C00A3709F /* BottomView.swift */; };
+		3F58108E247B79FF00A3709F /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58108D247B79FF00A3709F /* SwipeView.swift */; };
+		3F581090247BB77A00A3709F /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58108F247BB77A00A3709F /* Property.swift */; };
+		3F581093247BC32100A3709F /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F581092247BC32100A3709F /* AuthView.swift */; };
+		3F581095247BE7B800A3709F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F581094247BE7B700A3709F /* LoginView.swift */; };
+		3F581097247BE7DE00A3709F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F581096247BE7DE00A3709F /* SignUpView.swift */; };
+		3F581099247C1ABD00A3709F /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F581098247C1ABD00A3709F /* AlertView.swift */; };
+		3F58109C247C2B8200A3709F /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58109B247C2B8200A3709F /* Observer.swift */; };
+		3F58109E247C2C6F00A3709F /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58109D247C2C6F00A3709F /* Loader.swift */; };
+		3F5810A0247C2CB600A3709F /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58109F247C2CB600A3709F /* DataType.swift */; };
+		3F5810A2247C2D0700A3709F /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5810A1247C2D0700A3709F /* InfoView.swift */; };
+		3F5810A4247C2F0800A3709F /* EnumClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5810A3247C2F0800A3709F /* EnumClass.swift */; };
+		3F8676C0247A7F120071E7E1 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 3F8676BF247A7F120071E7E1 /* SDWebImage */; };
+		3F912056247A760000DBF11A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F912055247A760000DBF11A /* AppDelegate.swift */; };
+		3F912058247A760000DBF11A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F912057247A760000DBF11A /* SceneDelegate.swift */; };
+		3F91205B247A760000DBF11A /* IOS_Project_OnlineDating.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F912059247A760000DBF11A /* IOS_Project_OnlineDating.xcdatamodeld */; };
+		3F91205D247A760000DBF11A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91205C247A760000DBF11A /* ContentView.swift */; };
+		3F91205F247A760600DBF11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F91205E247A760600DBF11A /* Assets.xcassets */; };
+		3F912062247A760600DBF11A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F912061247A760600DBF11A /* Preview Assets.xcassets */; };
+		3F912065247A760600DBF11A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F912063247A760600DBF11A /* LaunchScreen.storyboard */; };
+		3F912070247A760600DBF11A /* IOS_Project_OnlineDatingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91206F247A760600DBF11A /* IOS_Project_OnlineDatingTests.swift */; };
+		3F91207B247A760600DBF11A /* IOS_Project_OnlineDatingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91207A247A760600DBF11A /* IOS_Project_OnlineDatingUITests.swift */; };
+		3F912089247A774C00DBF11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F912088247A774C00DBF11A /* GoogleService-Info.plist */; };
+		8D4543520DB29863C00A5828 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A6DC9E07CDCA120C12C545 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework */; };
+		D7F3C8BCFD2C03CE7D88F59B /* Pods_IOS_Project_OnlineDating.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45890EAAF930F55EF1929DE6 /* Pods_IOS_Project_OnlineDating.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3F91206C247A760600DBF11A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F91204A247A760000DBF11A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F912051247A760000DBF11A;
+			remoteInfo = IOS_Project_OnlineDating;
+		};
+		3F912077247A760600DBF11A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F91204A247A760000DBF11A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F912051247A760000DBF11A;
+			remoteInfo = IOS_Project_OnlineDating;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		117EADFFAD6430B7BABA1E87 /* Pods-IOS_Project_OnlineDating.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Project_OnlineDating.debug.xcconfig"; path = "Target Support Files/Pods-IOS_Project_OnlineDating/Pods-IOS_Project_OnlineDating.debug.xcconfig"; sourceTree = "<group>"; };
+		21CE21AB45B8483CC24B85D3 /* Pods_IOS_Project_OnlineDatingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOS_Project_OnlineDatingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D1DC6CD555899F02DFBDA8B /* Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.release.xcconfig"; path = "Target Support Files/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2DD569F8D33FCCB48E9BF866 /* Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.debug.xcconfig"; path = "Target Support Files/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3F581089247B793E00A3709F /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		3F58108B247B798C00A3709F /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		3F58108D247B79FF00A3709F /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		3F58108F247BB77A00A3709F /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		3F581092247BC32100A3709F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		3F581094247BE7B700A3709F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3F581096247BE7DE00A3709F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		3F581098247C1ABD00A3709F /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		3F58109B247C2B8200A3709F /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		3F58109D247C2C6F00A3709F /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		3F58109F247C2CB600A3709F /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
+		3F5810A1247C2D0700A3709F /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		3F5810A3247C2F0800A3709F /* EnumClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumClass.swift; sourceTree = "<group>"; };
+		3F912052247A760000DBF11A /* IOS_Project_OnlineDating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_Project_OnlineDating.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F912055247A760000DBF11A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3F912057247A760000DBF11A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3F91205A247A760000DBF11A /* IOS_Project_OnlineDating.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IOS_Project_OnlineDating.xcdatamodel; sourceTree = "<group>"; };
+		3F91205C247A760000DBF11A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3F91205E247A760600DBF11A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F912061247A760600DBF11A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3F912064247A760600DBF11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3F912066247A760600DBF11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F91206B247A760600DBF11A /* IOS_Project_OnlineDatingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOS_Project_OnlineDatingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F91206F247A760600DBF11A /* IOS_Project_OnlineDatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Project_OnlineDatingTests.swift; sourceTree = "<group>"; };
+		3F912071247A760600DBF11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F912076247A760600DBF11A /* IOS_Project_OnlineDatingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOS_Project_OnlineDatingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F91207A247A760600DBF11A /* IOS_Project_OnlineDatingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Project_OnlineDatingUITests.swift; sourceTree = "<group>"; };
+		3F91207C247A760600DBF11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F912088247A774C00DBF11A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		45890EAAF930F55EF1929DE6 /* Pods_IOS_Project_OnlineDating.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOS_Project_OnlineDating.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56A6DC9E07CDCA120C12C545 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71E9BAC1F0B3E5F5D9842636 /* Pods-IOS_Project_OnlineDatingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Project_OnlineDatingTests.debug.xcconfig"; path = "Target Support Files/Pods-IOS_Project_OnlineDatingTests/Pods-IOS_Project_OnlineDatingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D03D25BA2AC0C229B542B07B /* Pods-IOS_Project_OnlineDating.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Project_OnlineDating.release.xcconfig"; path = "Target Support Files/Pods-IOS_Project_OnlineDating/Pods-IOS_Project_OnlineDating.release.xcconfig"; sourceTree = "<group>"; };
+		F9CB5DC38A3D2A324E994C18 /* Pods-IOS_Project_OnlineDatingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Project_OnlineDatingTests.release.xcconfig"; path = "Target Support Files/Pods-IOS_Project_OnlineDatingTests/Pods-IOS_Project_OnlineDatingTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F91204F247A760000DBF11A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F8676C0247A7F120071E7E1 /* SDWebImage in Frameworks */,
+				D7F3C8BCFD2C03CE7D88F59B /* Pods_IOS_Project_OnlineDating.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F912068247A760600DBF11A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A07FBF2335387BC027C2E58 /* Pods_IOS_Project_OnlineDatingTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F912073247A760600DBF11A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D4543520DB29863C00A5828 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F581088247B792600A3709F /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				3F581089247B793E00A3709F /* TopView.swift */,
+				3F58108B247B798C00A3709F /* BottomView.swift */,
+				3F58108D247B79FF00A3709F /* SwipeView.swift */,
+				3F58109D247C2C6F00A3709F /* Loader.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		3F581091247BC2F300A3709F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				3F581092247BC32100A3709F /* AuthView.swift */,
+				3F581094247BE7B700A3709F /* LoginView.swift */,
+				3F581096247BE7DE00A3709F /* SignUpView.swift */,
+				3F5810A1247C2D0700A3709F /* InfoView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		3F58109A247C2B5B00A3709F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3F581098247C1ABD00A3709F /* AlertView.swift */,
+				3F58108F247BB77A00A3709F /* Property.swift */,
+				3F58109B247C2B8200A3709F /* Observer.swift */,
+				3F58109F247C2CB600A3709F /* DataType.swift */,
+				3F5810A3247C2F0800A3709F /* EnumClass.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3F912049247A760000DBF11A = {
+			isa = PBXGroup;
+			children = (
+				3F912054247A760000DBF11A /* IOS_Project_OnlineDating */,
+				3F91206E247A760600DBF11A /* IOS_Project_OnlineDatingTests */,
+				3F912079247A760600DBF11A /* IOS_Project_OnlineDatingUITests */,
+				3F912053247A760000DBF11A /* Products */,
+				616233A70D56F6C82F6E5F62 /* Pods */,
+				9E06CF28032340BA12BF1BC6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3F912053247A760000DBF11A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F912052247A760000DBF11A /* IOS_Project_OnlineDating.app */,
+				3F91206B247A760600DBF11A /* IOS_Project_OnlineDatingTests.xctest */,
+				3F912076247A760600DBF11A /* IOS_Project_OnlineDatingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F912054247A760000DBF11A /* IOS_Project_OnlineDating */ = {
+			isa = PBXGroup;
+			children = (
+				3F58109A247C2B5B00A3709F /* Common */,
+				3F581091247BC2F300A3709F /* Auth */,
+				3F581088247B792600A3709F /* MainView */,
+				3F912088247A774C00DBF11A /* GoogleService-Info.plist */,
+				3F912055247A760000DBF11A /* AppDelegate.swift */,
+				3F912057247A760000DBF11A /* SceneDelegate.swift */,
+				3F91205C247A760000DBF11A /* ContentView.swift */,
+				3F91205E247A760600DBF11A /* Assets.xcassets */,
+				3F912063247A760600DBF11A /* LaunchScreen.storyboard */,
+				3F912066247A760600DBF11A /* Info.plist */,
+				3F912059247A760000DBF11A /* IOS_Project_OnlineDating.xcdatamodeld */,
+				3F912060247A760600DBF11A /* Preview Content */,
+			);
+			path = IOS_Project_OnlineDating;
+			sourceTree = "<group>";
+		};
+		3F912060247A760600DBF11A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3F912061247A760600DBF11A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3F91206E247A760600DBF11A /* IOS_Project_OnlineDatingTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F91206F247A760600DBF11A /* IOS_Project_OnlineDatingTests.swift */,
+				3F912071247A760600DBF11A /* Info.plist */,
+			);
+			path = IOS_Project_OnlineDatingTests;
+			sourceTree = "<group>";
+		};
+		3F912079247A760600DBF11A /* IOS_Project_OnlineDatingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3F91207A247A760600DBF11A /* IOS_Project_OnlineDatingUITests.swift */,
+				3F91207C247A760600DBF11A /* Info.plist */,
+			);
+			path = IOS_Project_OnlineDatingUITests;
+			sourceTree = "<group>";
+		};
+		616233A70D56F6C82F6E5F62 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				117EADFFAD6430B7BABA1E87 /* Pods-IOS_Project_OnlineDating.debug.xcconfig */,
+				D03D25BA2AC0C229B542B07B /* Pods-IOS_Project_OnlineDating.release.xcconfig */,
+				2DD569F8D33FCCB48E9BF866 /* Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.debug.xcconfig */,
+				2D1DC6CD555899F02DFBDA8B /* Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.release.xcconfig */,
+				71E9BAC1F0B3E5F5D9842636 /* Pods-IOS_Project_OnlineDatingTests.debug.xcconfig */,
+				F9CB5DC38A3D2A324E994C18 /* Pods-IOS_Project_OnlineDatingTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9E06CF28032340BA12BF1BC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45890EAAF930F55EF1929DE6 /* Pods_IOS_Project_OnlineDating.framework */,
+				56A6DC9E07CDCA120C12C545 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework */,
+				21CE21AB45B8483CC24B85D3 /* Pods_IOS_Project_OnlineDatingTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F912051247A760000DBF11A /* IOS_Project_OnlineDating */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F91207F247A760600DBF11A /* Build configuration list for PBXNativeTarget "IOS_Project_OnlineDating" */;
+			buildPhases = (
+				2151775ADE373DE0BBB6631E /* [CP] Check Pods Manifest.lock */,
+				3F91204E247A760000DBF11A /* Sources */,
+				3F91204F247A760000DBF11A /* Frameworks */,
+				3F912050247A760000DBF11A /* Resources */,
+				3CF48EC5D6DE480DBE4BE03C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IOS_Project_OnlineDating;
+			packageProductDependencies = (
+				3F8676BF247A7F120071E7E1 /* SDWebImage */,
+			);
+			productName = IOS_Project_OnlineDating;
+			productReference = 3F912052247A760000DBF11A /* IOS_Project_OnlineDating.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3F91206A247A760600DBF11A /* IOS_Project_OnlineDatingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F912082247A760600DBF11A /* Build configuration list for PBXNativeTarget "IOS_Project_OnlineDatingTests" */;
+			buildPhases = (
+				BF6AA2BC823A21A7CD101682 /* [CP] Check Pods Manifest.lock */,
+				3F912067247A760600DBF11A /* Sources */,
+				3F912068247A760600DBF11A /* Frameworks */,
+				3F912069247A760600DBF11A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F91206D247A760600DBF11A /* PBXTargetDependency */,
+			);
+			name = IOS_Project_OnlineDatingTests;
+			productName = IOS_Project_OnlineDatingTests;
+			productReference = 3F91206B247A760600DBF11A /* IOS_Project_OnlineDatingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3F912075247A760600DBF11A /* IOS_Project_OnlineDatingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F912085247A760600DBF11A /* Build configuration list for PBXNativeTarget "IOS_Project_OnlineDatingUITests" */;
+			buildPhases = (
+				A274DF1830FEDC617B0A1485 /* [CP] Check Pods Manifest.lock */,
+				3F912072247A760600DBF11A /* Sources */,
+				3F912073247A760600DBF11A /* Frameworks */,
+				3F912074247A760600DBF11A /* Resources */,
+				2D81999D67B5FBAD3D2EB504 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F912078247A760600DBF11A /* PBXTargetDependency */,
+			);
+			name = IOS_Project_OnlineDatingUITests;
+			productName = IOS_Project_OnlineDatingUITests;
+			productReference = 3F912076247A760600DBF11A /* IOS_Project_OnlineDatingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F91204A247A760000DBF11A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "黃泰銘";
+				TargetAttributes = {
+					3F912051247A760000DBF11A = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					3F91206A247A760600DBF11A = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 3F912051247A760000DBF11A;
+					};
+					3F912075247A760600DBF11A = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 3F912051247A760000DBF11A;
+					};
+				};
+			};
+			buildConfigurationList = 3F91204D247A760000DBF11A /* Build configuration list for PBXProject "IOS_Project_OnlineDating" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3F912049247A760000DBF11A;
+			packageReferences = (
+				3F8676BE247A7F120071E7E1 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
+			productRefGroup = 3F912053247A760000DBF11A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F912051247A760000DBF11A /* IOS_Project_OnlineDating */,
+				3F91206A247A760600DBF11A /* IOS_Project_OnlineDatingTests */,
+				3F912075247A760600DBF11A /* IOS_Project_OnlineDatingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F912050247A760000DBF11A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F912065247A760600DBF11A /* LaunchScreen.storyboard in Resources */,
+				3F912089247A774C00DBF11A /* GoogleService-Info.plist in Resources */,
+				3F912062247A760600DBF11A /* Preview Assets.xcassets in Resources */,
+				3F91205F247A760600DBF11A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F912069247A760600DBF11A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F912074247A760600DBF11A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2151775ADE373DE0BBB6631E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IOS_Project_OnlineDating-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D81999D67B5FBAD3D2EB504 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CF48EC5D6DE480DBE4BE03C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOS_Project_OnlineDating/Pods-IOS_Project_OnlineDating-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOS_Project_OnlineDating/Pods-IOS_Project_OnlineDating-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOS_Project_OnlineDating/Pods-IOS_Project_OnlineDating-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A274DF1830FEDC617B0A1485 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF6AA2BC823A21A7CD101682 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IOS_Project_OnlineDatingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F91204E247A760000DBF11A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5810A2247C2D0700A3709F /* InfoView.swift in Sources */,
+				3F58109C247C2B8200A3709F /* Observer.swift in Sources */,
+				3F5810A4247C2F0800A3709F /* EnumClass.swift in Sources */,
+				3F5810A0247C2CB600A3709F /* DataType.swift in Sources */,
+				3F91205B247A760000DBF11A /* IOS_Project_OnlineDating.xcdatamodeld in Sources */,
+				3F58108A247B793E00A3709F /* TopView.swift in Sources */,
+				3F912056247A760000DBF11A /* AppDelegate.swift in Sources */,
+				3F58108E247B79FF00A3709F /* SwipeView.swift in Sources */,
+				3F58108C247B798C00A3709F /* BottomView.swift in Sources */,
+				3F581099247C1ABD00A3709F /* AlertView.swift in Sources */,
+				3F581097247BE7DE00A3709F /* SignUpView.swift in Sources */,
+				3F91205D247A760000DBF11A /* ContentView.swift in Sources */,
+				3F581090247BB77A00A3709F /* Property.swift in Sources */,
+				3F912058247A760000DBF11A /* SceneDelegate.swift in Sources */,
+				3F581095247BE7B800A3709F /* LoginView.swift in Sources */,
+				3F58109E247C2C6F00A3709F /* Loader.swift in Sources */,
+				3F581093247BC32100A3709F /* AuthView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F912067247A760600DBF11A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F912070247A760600DBF11A /* IOS_Project_OnlineDatingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F912072247A760600DBF11A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F91207B247A760600DBF11A /* IOS_Project_OnlineDatingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F91206D247A760600DBF11A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F912051247A760000DBF11A /* IOS_Project_OnlineDating */;
+			targetProxy = 3F91206C247A760600DBF11A /* PBXContainerItemProxy */;
+		};
+		3F912078247A760600DBF11A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F912051247A760000DBF11A /* IOS_Project_OnlineDating */;
+			targetProxy = 3F912077247A760600DBF11A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3F912063247A760600DBF11A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F912064247A760600DBF11A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3F91207D247A760600DBF11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3F91207E247A760600DBF11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3F912080247A760600DBF11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 117EADFFAD6430B7BABA1E87 /* Pods-IOS_Project_OnlineDating.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"IOS_Project_OnlineDating/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = IOS_Project_OnlineDating/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "NTUST.IOS-Project-OnlineDating";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3F912081247A760600DBF11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D03D25BA2AC0C229B542B07B /* Pods-IOS_Project_OnlineDating.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"IOS_Project_OnlineDating/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = IOS_Project_OnlineDating/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "NTUST.IOS-Project-OnlineDating";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3F912083247A760600DBF11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71E9BAC1F0B3E5F5D9842636 /* Pods-IOS_Project_OnlineDatingTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = IOS_Project_OnlineDatingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "NTUST.IOS-Project-OnlineDatingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IOS_Project_OnlineDating.app/IOS_Project_OnlineDating";
+			};
+			name = Debug;
+		};
+		3F912084247A760600DBF11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9CB5DC38A3D2A324E994C18 /* Pods-IOS_Project_OnlineDatingTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = IOS_Project_OnlineDatingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "NTUST.IOS-Project-OnlineDatingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IOS_Project_OnlineDating.app/IOS_Project_OnlineDating";
+			};
+			name = Release;
+		};
+		3F912086247A760600DBF11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DD569F8D33FCCB48E9BF866 /* Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = IOS_Project_OnlineDatingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "NTUST.IOS-Project-OnlineDatingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = IOS_Project_OnlineDating;
+			};
+			name = Debug;
+		};
+		3F912087247A760600DBF11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D1DC6CD555899F02DFBDA8B /* Pods-IOS_Project_OnlineDating-IOS_Project_OnlineDatingUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = IOS_Project_OnlineDatingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "NTUST.IOS-Project-OnlineDatingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = IOS_Project_OnlineDating;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F91204D247A760000DBF11A /* Build configuration list for PBXProject "IOS_Project_OnlineDating" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F91207D247A760600DBF11A /* Debug */,
+				3F91207E247A760600DBF11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F91207F247A760600DBF11A /* Build configuration list for PBXNativeTarget "IOS_Project_OnlineDating" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F912080247A760600DBF11A /* Debug */,
+				3F912081247A760600DBF11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F912082247A760600DBF11A /* Build configuration list for PBXNativeTarget "IOS_Project_OnlineDatingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F912083247A760600DBF11A /* Debug */,
+				3F912084247A760600DBF11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F912085247A760600DBF11A /* Build configuration list for PBXNativeTarget "IOS_Project_OnlineDatingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F912086247A760600DBF11A /* Debug */,
+				3F912087247A760600DBF11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F8676BE247A7F120071E7E1 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F8676BF247A7F120071E7E1 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F8676BE247A7F120071E7E1 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		3F912059247A760000DBF11A /* IOS_Project_OnlineDating.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3F91205A247A760000DBF11A /* IOS_Project_OnlineDating.xcdatamodel */,
+			);
+			currentVersion = 3F91205A247A760000DBF11A /* IOS_Project_OnlineDating.xcdatamodel */;
+			path = IOS_Project_OnlineDating.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3F91204A247A760000DBF11A /* Project object */;
+}
