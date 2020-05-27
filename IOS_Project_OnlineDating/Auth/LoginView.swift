@@ -88,8 +88,7 @@ struct LoginView:View {
                         print("Success with User : \(user.uid)")
                         self.obs.__THIS__.Uid = user.uid as! String
                         
-                        if self.obs.reloadThis() == true{
-                            self.obs.loadRelationship()
+                        if self.obs.loadRelationship() == true{
                             print("It work")
                         }
                         

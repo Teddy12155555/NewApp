@@ -13,10 +13,11 @@ struct SwipeView : View{
     
     @EnvironmentObject var obser:Observer
     
+    
     var body: some View{
         
         GeometryReader{geo in
-            
+        
             ZStack{
                 ForEach(self.obser.users){i in
                     
@@ -38,6 +39,8 @@ struct SwipeView : View{
                                 
                                 self.obser.updateDB(user: i, status: "liked")
                                 
+                                self.obser.AddCheckRelation(who: i.id, status: "liked")
+                                
                             }else{
                                 
                                 self.obser.updateObs(user: i, swipeValue: 0, degree: 0)
@@ -49,6 +52,8 @@ struct SwipeView : View{
                                 // Swipe Dislike
                                 self.obser.updateObs(user: i, swipeValue: -500, degree: 0)
                                 self.obser.updateDB(user: i, status: "disliked")
+                                self.obser.AddCheckRelation(who: i.id, status: "disliked")
+                                
                             }else{
                                 self.obser.updateObs(user: i, swipeValue: 0, degree: 0)
                             }
@@ -95,5 +100,4 @@ struct SwipeInfoView:View {
         }
     }
 }
-
 

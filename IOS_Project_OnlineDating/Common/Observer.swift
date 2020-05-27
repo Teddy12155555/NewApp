@@ -20,6 +20,7 @@ class Observer: ObservableObject {
     
     @Published var relationship:[String:String] = [:]
     
+    
     init() {
         let db = Firestore.firestore()
         db.collection("users").getDocuments{ (snap,err) in
@@ -37,10 +38,6 @@ class Observer: ObservableObject {
                 let id = i.documentID
                 
                 self.users.append(User(id: id, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0))
-//                if status == ""{
-//
-//                }
-                
                 
             }
         }
@@ -90,23 +87,32 @@ class Observer: ObservableObject {
     
     func reloadThis() -> Bool{
         
-        let myGroup = DispatchGroup()
         if __THIS__.Uid == "" || users.count == 0{
             return false
         }
         else{
-            myGroup.enter()
             for j in 0..<self.users.count{
                 if self.users[j].id == self.__THIS__.Uid{
                     
                     self.__THIS__.SetThis(id_: self.users[j].id, uid: self.users[j].id, name: self.users[j].name, age: self.users[j].age, image: self.users[j].image, sex: self.users[j].sex)
-                    print("Find self : \(self.__THIS__)")
                     self.users.remove(at: j)
                     break
                 }
                 
             }
-            myGroup.leave()
+            /////////////////////////////
+            var rmTemp = [Int]()
+            for j in 0..<self.users.count{
+                if let status =  self.relationship["\(self.users[j].id)"] {
+                    if status != ""{
+                        rmTemp.append(j)
+                    }
+                }
+            }
+            for j in 0..<rmTemp.count{
+                self.users.remove(at: rmTemp[j])
+            }
+            
             pageIndex =
             ENUM_CLASS.PAGES.SWIPE_PAGE
             return true
@@ -114,8 +120,10 @@ class Observer: ObservableObject {
     }
     
     //
-    func loadRelationship(){
+    func loadRelationship() -> Bool{
         let db = Firestore.firestore()
+        let group = DispatchGroup()
+        group.enter()
         db.collection("relationship").document(self.__THIS__.Uid).getDocument{(data,err) in
             if err != nil{
                 print("Error")
@@ -123,17 +131,38 @@ class Observer: ObservableObject {
             
             self.relationship = data?.data() as! [String:String]
             
-            self.relationship.remove(at: self.relationship.index(forKey: "selfinit")!)
-           
-        }
-    }
-    func updateDB(relation : RelationShip,status:String){
-        let db = Firestore.firestore()
-        db.collection("relationship").document(self.__THIS__.Uid).getDocument{(data,err) in
-            if err != nil{
-                print("Error")
+            if self.relationship["selfinit"] != nil{
+                self.relationship.remove(at: self.relationship.index(forKey: "selfinit")!)
             }
+            
+            group.leave()
         }
+        group.notify(queue: .main, execute: {
+            self.reloadThis()
+        })
+        return true
     }
     
-}
+    func AddCheckRelation(who:String,status:String){
+        let db = Firestore.firestore()
+        let uid = self.__THIS__.Uid
+        db.collection("relationship").document(uid).updateData(["\(who)":"\(status)"])
+        
+        db.collection("relationship").document("\(who)").getDocument{(data,err) in
+                if err != nil{
+                    print("Error")
+                }
+            let temp :[String:String] = data?.data() as! [String:String]
+            if temp[uid] != nil{
+                print("Match : (\(uid),\(who))")
+                
+                db.collection("relationship").document(uid).updateData(["\(who)":"pair"])
+                
+                db.collection("relationship").document(who).updateData(["\(who)":"pair"])
+            }
+            
+            }
+        }
+        
+    }
+    
