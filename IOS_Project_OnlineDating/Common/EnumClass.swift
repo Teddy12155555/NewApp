@@ -21,6 +21,7 @@ class ENUM_CLASS {
         case INFO_PAGE
         case SWIPE_PAGE
         case CHAT_PAGE
+        case MSGLIST_PAGE
     }
     
     public enum SIGN_UP_PAGES{

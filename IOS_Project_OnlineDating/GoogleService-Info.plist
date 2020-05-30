@@ -3,34 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>730453959128-asl8405ib9mfth5qdfovvv081uelt85d.apps.googleusercontent.com</string>
+	<string>446206354748-0nf8e0eik58bfq3fp9osoiv965b191v0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.730453959128-asl8405ib9mfth5qdfovvv081uelt85d</string>
+	<string>com.googleusercontent.apps.446206354748-0nf8e0eik58bfq3fp9osoiv965b191v0</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAcsCs_3HNJjDYiJJY0TS9uQltLlSaDOt8</string>
+	<string>AIzaSyASnL_mkWBH00eeaTqCLGoOKKTOGr7jvBc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>730453959128</string>
+	<string>446206354748</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>NTUST.IOS-Project-OnlineDating</string>
+	<string>NTUST.IosOnlineDating</string>
 	<key>PROJECT_ID</key>
-	<string>teddyonlinedating</string>
+	<string>iosonlinedating-7cc49</string>
 	<key>STORAGE_BUCKET</key>
-	<string>teddyonlinedating.appspot.com</string>
+	<string>iosonlinedating-7cc49.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:730453959128:ios:7aabcabaef3119ecb512ad</string>
+	<string>1:446206354748:ios:84d65761b540e7f9b6ea39</string>
 	<key>DATABASE_URL</key>
-	<string>https://teddyonlinedating.firebaseio.com</string>
+	<string>https://iosonlinedating-7cc49.firebaseio.com</string>
 </dict>
 </plist>

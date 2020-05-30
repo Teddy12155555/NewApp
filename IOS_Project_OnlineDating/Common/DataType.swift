@@ -41,7 +41,18 @@ struct User : Identifiable {
     var sex:String
     var swipe:CGFloat
     var degree:Double
+    var pairUid:String = ""
+    var matchUid:String = ""
 }
+
+//
+//struct Msg : Identifiable {
+//    var id : String
+//    var sender_id : String
+//    var receiver_id : String
+//    var text : String
+//    var date : String
+//}
 
 struct RelationShip : Identifiable {
     var id:String

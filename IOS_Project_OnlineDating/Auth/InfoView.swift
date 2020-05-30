@@ -336,15 +336,16 @@ struct InfoView: View {
                                         return
                                     }
                                     // Create self as a new user
-                                    self.db.collection("users").document("\(self.UserId)").setData([
+                                    print(self.UserId)
+                                    self.db.collection("users").document("\(self.UserId)").updateData([
                                         "age":"\(self.Age)",
                                         "name":"\(self.Name)",
                                         "sex":"\(self.Sex)",
                                         "image":"\(url!)"
                                     ])
                                     // Create new relationship
-                                    self.db.collection("relationship")
-                                        .document("\(self.UserId)").setData(["selfinit":"true"])
+//                                    self.db.collection("relationship")
+//                                        .document("\(self.UserId)").setData(["selfinit":"true"])
                                     
                                     self.Image_ = "\(url!)"
                                     print("Successed with URL : \(url!)")

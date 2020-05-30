@@ -40,10 +40,11 @@ struct ContentView: View {
                     SwipeView()
                     BottomView()
                     
-                    
-                }else{
+                }
+                else if(self.obs.pageIndex == ENUM_CLASS.PAGES.MSGLIST_PAGE){
                     TopView()
-                    Spacer()
+//                    Spacer()
+                    MessagesListView()
                 }
                 
             }

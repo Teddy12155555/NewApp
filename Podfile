@@ -16,6 +16,9 @@ pod 'Firebase/Database'
 pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 pod 'SDWebImageSwiftUI'
+pod 'JSQMessagesViewController'
+pod 'PromiseKit/Alamofire','~> 6.0'
+
 
 
   target 'IOS_Project_OnlineDatingTests' do

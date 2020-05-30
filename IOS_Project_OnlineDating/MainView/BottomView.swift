@@ -12,6 +12,10 @@ struct BottomView : View {
     
     @EnvironmentObject var obs:Observer
     
+    init() {
+        
+    }
+    
     var body: some View{
         
         GeometryReader{geo in
@@ -50,3 +54,9 @@ struct BottomView : View {
 }
 
 
+
+struct BottomView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}
