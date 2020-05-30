@@ -9,7 +9,7 @@
 import SwiftUI
 import Firebase
 import FirebaseAuth
-
+import UserNotifications
 
 struct LoginView:View {
     @EnvironmentObject var obs : Observer
@@ -30,9 +30,9 @@ struct LoginView:View {
          
          // Account field
          HStack{
-             Image(systemName: "person.fill").resizable().frame(width: 20, height: 20)
+             Image(systemName: "envelope").resizable().frame(width: 25, height: 20)
              
-            TextField("Account",text: $Account).padding(.leading,12).font(.system(size: 20)).autocapitalization(.none)
+            TextField("Email Account",text: $Account).padding(.leading,12).font(.system(size: 20)).autocapitalization(.none)
              
             }.padding(12)
             .background(Color.white).cornerRadius(20)
@@ -42,7 +42,7 @@ struct LoginView:View {
          // Password field
          HStack{
             
-            Image(systemName: "lock.fill").resizable().frame(width: 20, height: 20)
+            Image(systemName: "lock").resizable().frame(width: 20, height: 23)
             
             VStack{
                 if self.Visble{
@@ -61,7 +61,7 @@ struct LoginView:View {
             Button(action: {
                 self.Visble.toggle()
             }){
-                Image(systemName: self.Visble ? "eye.fill" : "eye.slash.fill")
+                Image(systemName: self.Visble ? "eye.fill" : "eye.slash.fill").foregroundColor(Color.black)
             }
              
              
@@ -108,21 +108,54 @@ struct LoginView:View {
          .shadow(radius: 25)
          
          // Button Sign up
-         HStack{
-             Text("還沒有帳號嗎？").foregroundColor(.white)
-             
-             Button(action: {
-                
-                self.Signup.toggle()
-                
-             }){
-                 Text("註冊一個").underline().foregroundColor(.white)
-             }
-         }.padding(.top,30)
+        HStack{
+            Text("還沒有帳號嗎？").foregroundColor(.white)
+            
+            Button(action: {
+            
+            self.Signup.toggle()
+            
+            }){
+                Text("註冊一個").underline().foregroundColor(.white)
+            }
+        }.padding(.top,30)
          
-         
+        // forget passwoed
+        Button(action: {}){
+            Text("忘記密碼？").foregroundColor(Color.white).font(.system(size: 13))
+        }
         
+            HStack{
+                
+                Color.white.opacity(0.7).frame(width: 40, height: 1)
+                Text("Or").foregroundColor(.white)
+                Color.white.opacity(0.7).frame(width: 40, height: 1)
+                
+            }
          
+            HStack{
+                
+                Button(action: {
+                    
+                    
+                }){
+                    Image("facebook").renderingMode(.original)
+                    .resizable()
+                        .frame(width: 25, height: 25, alignment: .center)
+                    .padding()
+                }.background(Color.white)
+                .clipShape(Circle())
+                
+                Button(action: {}){
+                    Image("github").renderingMode(.original)
+                    .resizable()
+                        .frame(width: 25, height: 25, alignment: .center)
+                    .padding()
+                }.background(Color.white)
+                    .clipShape(Circle()).padding(.leading,25)
+                
+            }
+            
          
          }.padding(.horizontal,18).offset( y: 15)
     }

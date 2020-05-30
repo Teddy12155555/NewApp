@@ -32,6 +32,7 @@
 		3F912070247A760600DBF11A /* IOS_Project_OnlineDatingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91206F247A760600DBF11A /* IOS_Project_OnlineDatingTests.swift */; };
 		3F91207B247A760600DBF11A /* IOS_Project_OnlineDatingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91207A247A760600DBF11A /* IOS_Project_OnlineDatingUITests.swift */; };
 		3F912089247A774C00DBF11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F912088247A774C00DBF11A /* GoogleService-Info.plist */; };
+		3FA88868247EC5E000097F01 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA88867247EC5E000097F01 /* Notifications.swift */; };
 		8D4543520DB29863C00A5828 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A6DC9E07CDCA120C12C545 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework */; };
 		D7F3C8BCFD2C03CE7D88F59B /* Pods_IOS_Project_OnlineDating.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45890EAAF930F55EF1929DE6 /* Pods_IOS_Project_OnlineDating.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		3F91207A247A760600DBF11A /* IOS_Project_OnlineDatingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Project_OnlineDatingUITests.swift; sourceTree = "<group>"; };
 		3F91207C247A760600DBF11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F912088247A774C00DBF11A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3FA88867247EC5E000097F01 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		45890EAAF930F55EF1929DE6 /* Pods_IOS_Project_OnlineDating.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOS_Project_OnlineDating.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A6DC9E07CDCA120C12C545 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E9BAC1F0B3E5F5D9842636 /* Pods-IOS_Project_OnlineDatingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Project_OnlineDatingTests.debug.xcconfig"; path = "Target Support Files/Pods-IOS_Project_OnlineDatingTests/Pods-IOS_Project_OnlineDatingTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				3F58109B247C2B8200A3709F /* Observer.swift */,
 				3F58109F247C2CB600A3709F /* DataType.swift */,
 				3F5810A3247C2F0800A3709F /* EnumClass.swift */,
+				3FA88867247EC5E000097F01 /* Notifications.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				3F581099247C1ABD00A3709F /* AlertView.swift in Sources */,
 				3F581097247BE7DE00A3709F /* SignUpView.swift in Sources */,
 				3F91205D247A760000DBF11A /* ContentView.swift in Sources */,
+				3FA88868247EC5E000097F01 /* Notifications.swift in Sources */,
 				3F581090247BB77A00A3709F /* Property.swift in Sources */,
 				3F912058247A760000DBF11A /* SceneDelegate.swift in Sources */,
 				3F581095247BE7B800A3709F /* LoginView.swift in Sources */,

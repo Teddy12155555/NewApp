@@ -10,6 +10,7 @@ import SwiftUI
 import Firebase
 import SDWebImageSwiftUI
 
+
 class Observer: ObservableObject {
     
     @Published var __THIS__  = THIS(id: "", Uid: "", Name: "", Age: "", Image_: "", Sex: "")
@@ -134,7 +135,6 @@ class Observer: ObservableObject {
             if self.relationship["selfinit"] != nil{
                 self.relationship.remove(at: self.relationship.index(forKey: "selfinit")!)
             }
-            
             group.leave()
         }
         group.notify(queue: .main, execute: {
@@ -155,6 +155,9 @@ class Observer: ObservableObject {
             let temp :[String:String] = data?.data() as! [String:String]
             if temp[uid] != nil{
                 print("Match : (\(uid),\(who))")
+                // Notifications
+                
+                SendNotification(title: "Title", body: "Match!!")
                 
                 db.collection("relationship").document(uid).updateData(["\(who)":"pair"])
                 
