@@ -12,6 +12,8 @@ import Photos
 import FirebaseStorage
 import JSQMessagesViewController
 
+
+
 class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     
     
@@ -27,6 +29,11 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var messageListener:ListenerRegistration? = nil
 //    var alreadyCreateListener:Bool = false
     
+    
+    var lastMessage:String = ""
+    var lastMessageDate:Date? = nil
+    
+    var left:Bool = false
     
     
     
@@ -114,6 +121,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             "text" : "sending a photo"
             ] as [String : Any]
         let itemRef = messageRef!.addDocument(data: messageItem)
+ 
         print(itemRef.documentID)
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
@@ -189,6 +197,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         return cell
     }
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //        換背景圖片
@@ -213,18 +223,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         self.messageListener = self.observeMessages()
         self.typingListener = self.observeTyping()
-        
-        
-        //        if(!alreadyCreateListener){
-        
-        //            self.alreadyCreateListener = true
-        //
-        //        }
-        
-        
-        
-        //        self.observeTyping()
-        
+        self.left = false
         //        這邊設置頭像大小
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
@@ -234,9 +233,12 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        //        print(123)
         self.messageListener?.remove()
         self.typingListener?.remove()
+        self.messageListener = nil
+        self.typingListener = nil
+        self.left = true
+        
     }
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         let messageItem = [ // 2
@@ -252,50 +254,57 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
     
     private func observeMessages() -> ListenerRegistration {
-        print("createeeeeeeeeeeeee")
         let messageQuery = messageRef?.order(by: "create_date", descending: false)
-        let listener = messageQuery?.addSnapshotListener { querySnapshot, error in
+        let listener = messageQuery?.addSnapshotListener(includeMetadataChanges: true) { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error fetching snapshots: \(error!)")
                 return
             }
-            snapshot.documentChanges.forEach { diff in
-                if (diff.type == .added) {
-                    print("偵測到新訊息: uid: \(diff.document.documentID)")
-                    let id = diff.document.data()["sender_id"] as! String
-                    let text = diff.document.data()["text"] as! String
-                    var name:String!
-                    if id == self.senderId {
-                        name = self.__THIS__.Name
-                    }
-                    else{
-                        name = self.friend?.name
-                    }
-                    if let photoURL:String = diff.document.data()["photoURL"] as? String { // 1
-                        // 2
-                        if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
-                            // 3
-                            self.addPhotoMessage(withId: id, key: diff.document.documentID, mediaItem: mediaItem)
-                            // 4
-                            if photoURL.hasPrefix("gs://") {
-                                self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
-                            }
+            let source = querySnapshot!.metadata.hasPendingWrites ? "Local" : "Server"
+//            if source == "Server"{
+                snapshot.documentChanges.forEach { diff in
+                    if (diff.type == .added) {
+                        print("viewcontroller偵測到新訊息: uid: \(diff.document.documentID)")
+                        let id = diff.document.data()["sender_id"] as! String
+                        let text = diff.document.data()["text"] as! String
+                        var name:String!
+                        if id == self.senderId {
+                            name = self.__THIS__.Name
                         }
+                        else{
+                            name = self.friend?.name
+                        }
+                        if let photoURL:String = diff.document.data()["photoURL"] as? String { // 1
+                            // 2
+                            if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
+                                // 3
+                                self.addPhotoMessage(withId: id, key: diff.document.documentID, mediaItem: mediaItem)
+                                // 4
+                                if photoURL.hasPrefix("gs://") {
+                                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
+                                }
+                            }
+                            self.lastMessage = "sending a photo"
+                            self.lastMessageDate = Date()
+                        }
+                        else{
+                            self.addMessage(withId: id, name: name, text: text)
+                            self.lastMessage = text
+                            self.lastMessageDate = Date()
+                        }
+                        self.finishSendingMessage()
                     }
-                    else{
-                        self.addMessage(withId: id, name: name, text: text)
-                    }
-                    self.finishSendingMessage()
-                }
-                else if (diff.type == .modified){
-                    //                    圖片被改掉了
-                    print("偵測到修改訊息: uid: \(diff.document.documentID)")
-                    let key = diff.document.documentID
-                    if let photoURL = diff.document.data()["photoURL"] as? String { // 2
-                        // The photo has been updated.
-                        if photoURL != "NOTSET"{
-                            if let mediaItem = self.photoMessageMap[key] { // 3
-                                self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key) // 4
+                    else if (diff.type == .modified){
+                        //                    圖片被改掉了
+                        print("viewcontroller偵測到修改訊息: uid: \(diff.document.documentID)")
+                        let key = diff.document.documentID
+                        if let photoURL = diff.document.data()["photoURL"] as? String { // 2
+                            // The photo has been updated.
+                            if photoURL != "NOTSET"{
+                                if let mediaItem = self.photoMessageMap[key] { // 3
+                                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key) // 4
+                                }
+                                
                             }
                             
                         }
@@ -303,8 +312,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     }
                     
                 }
+
                 
-            }
+//            }
         }
         return listener as! ListenerRegistration
     }

@@ -174,8 +174,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "createMatchListener()"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "createMatchListener()"
             landmarkType = "7">
             <Locations>
@@ -238,8 +238,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "addPairUser(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +254,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "createPairsListener()"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "addPairUser(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "addPairUser(_:_:)"
             landmarkType = "7">
             <Locations>
@@ -366,8 +366,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "createPairsListener()"
             landmarkType = "7">
          </BreakpointContent>
@@ -382,8 +382,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "createPairsListener()"
             landmarkType = "7">
          </BreakpointContent>
@@ -558,8 +558,8 @@
             filePath = "IOS_Project_OnlineDating/Chat/MessagesListView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -574,25 +574,9 @@
             filePath = "IOS_Project_OnlineDating/Chat/ChatViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A3B78EDC-C2BA-4B9E-95AA-A86DD8B17A27"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOS_Project_OnlineDating/Chat/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -606,137 +590,9 @@
             filePath = "IOS_Project_OnlineDating/Chat/ChatViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "didPressSend(_:withMessageText:senderId:senderDisplayName:date:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "76FA4C1B-2C84-4792-BEFC-2081ABC4DBA9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOS_Project_OnlineDating/Chat/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
-            landmarkName = "observeMessages()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "76FA4C1B-2C84-4792-BEFC-2081ABC4DBA9 - bbc3199dbcaf2e46"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IOS_Project_OnlineDating.ChatViewController.(observeMessages in _50372202F50D5FF7D6B144B1794FC607)() -&gt; ()"
-                  moduleName = "IOS_Project_OnlineDating"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chianghongyun/Desktop/NewApp/IOS_Project_OnlineDating/Chat/ChatViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "234"
-                  endingLineNumber = "234"
-                  offsetFromSymbolStart = "564">
-               </Location>
-               <Location
-                  uuid = "76FA4C1B-2C84-4792-BEFC-2081ABC4DBA9 - 3b64a6efa4a39354"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IOS_Project_OnlineDating.ChatViewController.(observeMessages in _50372202F50D5FF7D6B144B1794FC607)() -&gt; ()"
-                  moduleName = "IOS_Project_OnlineDating"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chianghongyun/Desktop/NewApp/IOS_Project_OnlineDating/Chat/ChatViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "71">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A57BE312-1549-42F9-BE00-0D08DE898B65"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOS_Project_OnlineDating/Chat/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
-            landmarkName = "observeMessages()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A57BE312-1549-42F9-BE00-0D08DE898B65 - 3b64a6efa4a39354"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IOS_Project_OnlineDating.ChatViewController.(observeMessages in _50372202F50D5FF7D6B144B1794FC607)() -&gt; ()"
-                  moduleName = "IOS_Project_OnlineDating"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chianghongyun/Desktop/NewApp/IOS_Project_OnlineDating/Chat/ChatViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "239"
-                  endingLineNumber = "239"
-                  offsetFromSymbolStart = "308">
-               </Location>
-               <Location
-                  uuid = "A57BE312-1549-42F9-BE00-0D08DE898B65 - 9d700dd185afa45"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRDocumentChange) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IOS_Project_OnlineDating.ChatViewController.(observeMessages in _50372202F50D5FF7D6B144B1794FC607)() -&gt; ()"
-                  moduleName = "IOS_Project_OnlineDating"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chianghongyun/Desktop/NewApp/IOS_Project_OnlineDating/Chat/ChatViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "240"
-                  endingLineNumber = "240"
-                  offsetFromSymbolStart = "383">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DE5BC5A7-768D-48A2-B75A-D029031DE8DE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOS_Project_OnlineDating/Chat/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AB1A969D-FBA5-4EC4-982B-AD89C187EBA7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOS_Project_OnlineDating/Chat/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -750,9 +606,25 @@
             filePath = "IOS_Project_OnlineDating/Chat/ChatViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "viewDidDisappear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D611A6A-BE41-4171-A721-7D0183CCFD71"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Chat/ChatView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "updateUIViewController(_:context:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

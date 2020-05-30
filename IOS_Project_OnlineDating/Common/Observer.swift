@@ -13,27 +13,27 @@ import SDWebImageSwiftUI
 class Observer: ObservableObject {
     
     @Published var __THIS__  = THIS(id: "", Uid: "", Name: "", Age: "", Image_: "", Sex: "")
-    
     @Published var users = [User]()
     @Published var last = -1
     @Published var pageIndex:ENUM_CLASS.PAGES = .AUTH_PAGE
     @Published var relationship:[String:String] = [:]
     
-//    @Published var matchUsers = [User]()
-//    @Published var pairUsers = [User]()
+    //    @Published var matchUsers = [User]()
+    //    @Published var pairUsers = [User]()
     
     
-//    這邊避免用array存 用dict存取資訊
-//    key為matchUid
+    //    這邊避免用array存 用dict存取資訊
+    //    key為matchUid
     @Published var matchUsers:[String:User] = [:]
-//    key為pairUid
+    //    key為pairUid
     @Published var pairUsers:[String:User] = [:]
     
-//    這邊用來存每個pair之message listener key為pairUid
+    //    這邊用來存每個pair之message listener key為pairUid
     @Published var pairMessageListener:[String:ListenerRegistration] = [:]
     
-//    key為pairUid value為訊息
+    //    key為pairUid value為訊息
     @Published var pairLastMessages:[String:String] = [:]
+    @Published var pairLastMessagesDate:[String:Date] = [:]
     
     var db = Firestore.firestore()
     
@@ -42,72 +42,39 @@ class Observer: ObservableObject {
     init() {
     }
     
-//    
+    //
     func addMessageListenerForPair(_ pairUid:String){
         if(self.pairMessageListener[pairUid] != nil){
             return
         }
-        
-        let listener = self.db.collection("pairs").document(pairUid).collection("messages").addSnapshotListener { querySnapshot, error in
-             guard let snapshot = querySnapshot else {
-                 print("Error fetching snapshots: \(error!)")
-                 return
-             }
-             snapshot.documentChanges.forEach { diff in
-                 if (diff.type == .added) {
-                     print("偵測到新訊息: uid: \(diff.document.documentID)")
-//                     let id = diff.document.data()["sender_id"] as! String
-//                     let text = diff.document.data()["text"] as! String
-//                     var name:String!
-//                     if id == self.senderId {
-//                         name = LoginUser.name
-//                     }
-//                     else{
-//                         name = self.friend?.name
-//                     }
-//
-//                     if let photoURL:String = diff.document.data()["photoURL"] as? String { // 1
-//                         // 2
-//                         if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
-//                             // 3
-//                             self.addPhotoMessage(withId: id, key: diff.document.documentID, mediaItem: mediaItem)
-//                             // 4
-//                             if photoURL.hasPrefix("gs://") {
-//                                 self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
-//                             }
-//                         }
-//                     }
-//                     else{
-//                         self.addMessage(withId: id, name: name, text: text)
-//                     }
-//                     self.finishSendingMessage()
+        let messageQuery = self.db.collection("pairs").document(pairUid).collection("messages").order(by: "create_date", descending: false)
+        let listener = messageQuery.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error fetching snapshots: \(error!)")
+                return
+            }
+            snapshot.documentChanges.forEach { diff in
+                if (diff.type == .added) {
+                    print("偵測到新訊息: uid: \(diff.document.documentID)")
                     self.pairLastMessages[pairUid] = diff.document.data()["text"] as? String ?? ""
+//                    print(diff.document.data()["text"] as? String ?? "")
+                    self.pairLastMessagesDate[pairUid] = diff.document.data()["create_date"] as? Date ?? Date()
                     
-
-                 }
-                 else if (diff.type == .modified){
-                     //                    圖片被改掉了
-                     print("偵測到修改訊息: uid: \(diff.document.documentID)")
-//                     let key = diff.document.documentID
-//                     if let photoURL = diff.document.data()["photoURL"] as? String { // 2
-//                         // The photo has been updated.
-//                         if photoURL != "NOTSET"{
-//                             if let mediaItem = self.photoMessageMap[key] { // 3
-//                                 self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key) // 4
-//                             }
-//
-//                         }
-//
-//                     }
-                     
-                 }
-                 
-             }
-         }
+                    
+                }
+            }
+        }
         self.pairMessageListener[pairUid] = listener
     }
-//    
+    //
     
+    func date2String(_ date:Date, dateFormat:String = "yyyy-MM-dd HH:mm:ss") -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.init(identifier: "zh_CN")
+        formatter.dateFormat = dateFormat
+        let date = formatter.string(from: date)
+        return date
+    }
     
     func updateObs(user:User,swipeValue:CGFloat,degree:Double){
         //        original version is users
@@ -115,13 +82,13 @@ class Observer: ObservableObject {
         self.matchUsers[user.matchUid]?.degree = degree
         
         
-//        for i in 0..<self.matchUsers.count{
-//            if self.matchUsers[i].id == user.id{
-//                self.matchUsers[i].swipe = swipeValue
-//                self.matchUsers[i].degree = degree
-//                self.last = i
-//            }
-//        }
+        //        for i in 0..<self.matchUsers.count{
+        //            if self.matchUsers[i].id == user.id{
+        //                self.matchUsers[i].swipe = swipeValue
+        //                self.matchUsers[i].degree = degree
+        //                self.last = i
+        //            }
+        //        }
     }
     
     //    TMING
@@ -153,7 +120,7 @@ class Observer: ObservableObject {
     
     
     
-//    當用戶登入創立此listener
+    //    當用戶登入創立此listener
     func createMatchListener(){
         let listener = self.db.collection("to_be_match").addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -161,13 +128,13 @@ class Observer: ObservableObject {
                 return
             }
             snapshot.documentChanges.forEach { diff in
-//                修改代表，配對可能被改掉了，代表有人左滑 或右滑了他
+                //                修改代表，配對可能被改掉了，代表有人左滑 或右滑了他
                 if (diff.type == .modified) {
                     print("偵測到修改: 修改match uid: \(diff.document.documentID)")
                     let userA_status : Int = diff.document.data()["userA_status"] as! Int
                     let userB_status : Int = diff.document.data()["userB_status"] as! Int
-//                    這邊可能還要加狀態去判斷 match狀態
-//                    ex:已經左滑過 或右滑過就不會再出現在頁面上
+                    //                    這邊可能還要加狀態去判斷 match狀態
+                    //                    ex:已經左滑過 或右滑過就不會再出現在頁面上
                     if(userA_status > 0 && userB_status > 0){
                         print("配對成功")
                         //                        取雙方UID
@@ -179,8 +146,8 @@ class Observer: ObservableObject {
                                 "userB_id" : userB_id,
                                 "create_date" : Date(),
                         ])
-//                        判斷若跟本地用戶有關 把新的配對用戶資訊加入 local用戶之pairs名單中
-//                        應該從array 裡移除對應match user
+                        //                        判斷若跟本地用戶有關 把新的配對用戶資訊加入 local用戶之pairs名單中
+                        //                        應該從array 裡移除對應match user
                         if(userA_id == self.__THIS__.Uid){
                             self.addPairUser(userB_id, newPairRef.documentID)
                         }
@@ -190,7 +157,7 @@ class Observer: ObservableObject {
                         print("新配對完成 pair uid: \(newPairRef.documentID)")
                     }
                 }
-//                    這邊代表一開始登入可能會先抓出所有新增的match id，也去檢查是否跟本地用戶有關
+                    //                    這邊代表一開始登入可能會先抓出所有新增的match id，也去檢查是否跟本地用戶有關
                 else if (diff.type == .added){
                     print("偵測到新增：新增match uid: \(diff.document.documentID)")
                     let userA_id:String = diff.document.data()["userA_id"] as! String
@@ -240,7 +207,7 @@ class Observer: ObservableObject {
         }
     }
     
-//    從firebase 即時 access 對應uid 之 user 資訊以及設置其對應的pair id
+    //    從firebase 即時 access 對應uid 之 user 資訊以及設置其對應的pair id
     func addPairUser(_ uid:String,_ pairUid:String){
         self.db.collection("users").document(uid).getDocument{
             (userDocument, error) in
@@ -252,7 +219,7 @@ class Observer: ObservableObject {
                 let id = userDocument.documentID
                 print("when pairs get user: \(id)")
                 self.pairUsers[pairUid] = User(id: id, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0,pairUid: pairUid)
-//                self.pairUsers.append(User(id: id, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0,pairUid: pairUid))
+                //                self.pairUsers.append(User(id: id, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0,pairUid: pairUid))
                 print("pairs user size \(self.pairUsers.count)")
             }
             else {
@@ -262,7 +229,7 @@ class Observer: ObservableObject {
     }
     
     
-//    當用戶登入之後 check他所有的已配對好友
+    //    當用戶登入之後 check他所有的已配對好友
     func createPairsListener(){
         let listener = self.db.collection("pairs").addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -270,7 +237,7 @@ class Observer: ObservableObject {
                 return
             }
             snapshot.documentChanges.forEach { diff in
-//                若有新增，則存到local 變數 pairUsers
+                //                若有新增，則存到local 變數 pairUsers
                 if (diff.type == .added){
                     print("偵測到新增pair: uid: \(diff.document.documentID)")
                     let userA_id : String = diff.document.data()["userA_id"] as! String
@@ -312,7 +279,7 @@ class Observer: ObservableObject {
             else {
                 print("Document does not exist")
             }
-//            這邊代表更改matchUser中的位置
+            //            這邊代表更改matchUser中的位置
             if liked {
                 self.matchUsers[user.matchUid]?.swipe = 500
             }

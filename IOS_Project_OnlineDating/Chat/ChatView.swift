@@ -25,6 +25,18 @@ struct ChatView: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: ChatViewController, context: Context) {
+//        if(uiViewController.left){
+//            if(self.obser.pairMessageListener[friend.pairUid] == nil){
+//                self.obser.addMessageListenerForPair(friend.pairUid)
+//            }
+//        }
+//        else{
+//            if(self.obser.pairMessageListener[friend.pairUid] != nil){
+//                self.obser.pairMessageListener[friend.pairUid]?.remove()
+//                self.obser.pairMessageListener[friend.pairUid] = nil
+//            }
+//        }
+        
     }
     
     func makeUIViewController(context: Context) -> ChatViewController {
@@ -35,6 +47,8 @@ struct ChatView: UIViewControllerRepresentable {
         chatViewController.messageRef = self.db.collection("pairs").document(self.friend.pairUid).collection("messages")
         chatViewController.pairRef = self.db.collection("pairs").document(self.friend.pairUid).collection("typingIndicator")
         chatViewController.__THIS__ = self.obser.__THIS__
+//        self.obser.pairMessageListener[friend.pairUid]?.remove()
+//        chatViewController.li = self.obser.pairMessageListener[friend.pairUid]
         return chatViewController
     }
     

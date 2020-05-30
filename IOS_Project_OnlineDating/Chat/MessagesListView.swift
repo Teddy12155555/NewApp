@@ -248,8 +248,8 @@ struct Centerview : View {
             .background(Color.white)
             .clipShape(shape())
             .navigationBarTitle(Text("Messages"))
-//            .navigationBarHidden(true)
-//            .navigationBarBackButtonHidden(true)
+            //            .navigationBarHidden(true)
+            //            .navigationBarBackButtonHidden(true)
         }
     }
 }
@@ -319,9 +319,9 @@ struct cellView : View {
     init(user:User){
         self.user = user
         let url_str = self.user.image
-//        print(url_str)
+        //        print(url_str)
         let _url = URL(string: url_str)!
-//        print(_url)
+        //        print(_url)
         let selfPointer = UnsafeMutablePointer(&self)
         if let data = try? Data(contentsOf: _url) {
             if let image = UIImage(data: data) {
@@ -345,16 +345,21 @@ struct cellView : View {
                 //                Text(data.name)
                 Text(user.name)
                 //                Text(data.msg).font(.caption)
-                Text(self.obser.pairLastMessages[user.pairUid]!).font(.caption)
-//                Text("1").font(.caption)
-
+                if((self.obser.pairLastMessages[user.pairUid]) != nil){
+                    Text(self.obser.pairLastMessages[user.pairUid]!).font(.caption)
+                }
+                
             }
             
             Spacer(minLength: 0)
             
             VStack{
-//                date
-                Text("Today")
+                //                date
+                //                Text("Today")
+                if(self.obser.pairLastMessagesDate[user.pairUid] != nil){
+                    Text(self.obser.date2String(self.obser.pairLastMessagesDate[user.pairUid]!, dateFormat: "MM/dd"))
+                    Text(self.obser.date2String(self.obser.pairLastMessagesDate[user.pairUid]!, dateFormat: "HH:mm"))
+                }
                 Spacer()
             }
         }.padding(.vertical)
