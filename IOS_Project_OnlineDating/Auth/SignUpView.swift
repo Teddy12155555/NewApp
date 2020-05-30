@@ -34,6 +34,10 @@ struct SignUpView:View {
         print(self.USER_ID + "想要註冊..")
         self.db.collection("users").document("\(self.USER_ID)").setData([
             "email":"\(self.ACCOUNT_)",
+//            "age":"",
+//            "name":"",
+//            "sex":"",
+//            "image":""
         ])
         createMatchData(self.USER_ID)
     }

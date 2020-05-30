@@ -3,34 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>446206354748-0nf8e0eik58bfq3fp9osoiv965b191v0.apps.googleusercontent.com</string>
+	<string>547485923749-j44sorrutclqg7jd2cb56368uqlu4olb.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.446206354748-0nf8e0eik58bfq3fp9osoiv965b191v0</string>
+	<string>com.googleusercontent.apps.547485923749-j44sorrutclqg7jd2cb56368uqlu4olb</string>
 	<key>API_KEY</key>
-	<string>AIzaSyASnL_mkWBH00eeaTqCLGoOKKTOGr7jvBc</string>
+	<string>AIzaSyCptFrK3j3Efw48_uoV0HrwoyhzyUl5ccI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>446206354748</string>
+	<string>547485923749</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>NTUST.IosOnlineDating</string>
+	<string>ginder-ios-ntust</string>
 	<key>PROJECT_ID</key>
-	<string>iosonlinedating-7cc49</string>
+	<string>ios-ginder</string>
 	<key>STORAGE_BUCKET</key>
-	<string>iosonlinedating-7cc49.appspot.com</string>
+	<string>ios-ginder.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:446206354748:ios:84d65761b540e7f9b6ea39</string>
+	<string>1:547485923749:ios:11ecb9aa4c6ea3be0c104c</string>
 	<key>DATABASE_URL</key>
-	<string>https://iosonlinedating-7cc49.firebaseio.com</string>
+	<string>https://ios-ginder.firebaseio.com</string>
 </dict>
 </plist>

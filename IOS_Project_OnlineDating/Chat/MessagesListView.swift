@@ -337,7 +337,6 @@ struct cellView : View {
         HStack(spacing: 12){
             
             Image(uiImage: self.img)
-                //            Image("123")
                 .resizable()
                 .frame(width: 55, height: 55)
             

@@ -30,6 +30,8 @@ class Observer: ObservableObject {
     
     //    這邊用來存每個pair之message listener key為pairUid
     @Published var pairMessageListener:[String:ListenerRegistration] = [:]
+    @Published var messageListenerFlag:[String:Bool] = [:]
+    
     
     //    key為pairUid value為訊息
     @Published var pairLastMessages:[String:String] = [:]
@@ -47,20 +49,23 @@ class Observer: ObservableObject {
         if(self.pairMessageListener[pairUid] != nil){
             return
         }
+        self.messageListenerFlag[pairUid] = true
         let messageQuery = self.db.collection("pairs").document(pairUid).collection("messages").order(by: "create_date", descending: false)
         let listener = messageQuery.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error fetching snapshots: \(error!)")
                 return
             }
-            snapshot.documentChanges.forEach { diff in
-                if (diff.type == .added) {
-                    print("偵測到新訊息: uid: \(diff.document.documentID)")
-                    self.pairLastMessages[pairUid] = diff.document.data()["text"] as? String ?? ""
-//                    print(diff.document.data()["text"] as? String ?? "")
-                    self.pairLastMessagesDate[pairUid] = diff.document.data()["create_date"] as? Date ?? Date()
-                    
-                    
+            if(self.messageListenerFlag[pairUid]!){
+                snapshot.documentChanges.forEach { diff in
+                    if (diff.type == .added) {
+                        print("偵測到新訊息: uid: \(diff.document.documentID)")
+                        self.pairLastMessages[pairUid] = diff.document.data()["text"] as? String ?? ""
+                        //                    print(diff.document.data()["text"] as? String ?? "")
+                        self.pairLastMessagesDate[pairUid] = diff.document.data()["create_date"] as? Date ?? Date()
+                        
+                        
+                    }
                 }
             }
         }
@@ -267,7 +272,6 @@ class Observer: ObservableObject {
                     db.collection("to_be_match").document(user.matchUid).updateData([
                         "userA_status" : 1,
                     ])
-                    
                 }
                 else if(document.data()!["userB_id"] as! String == self.__THIS__.Uid){
                     db.collection("to_be_match").document(user.matchUid).updateData([

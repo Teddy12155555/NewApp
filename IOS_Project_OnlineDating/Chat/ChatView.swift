@@ -23,19 +23,40 @@ struct ChatView: UIViewControllerRepresentable {
         self.friend = friend
         
     }
-
+    
     func updateUIViewController(_ uiViewController: ChatViewController, context: Context) {
-//        if(uiViewController.left){
-//            if(self.obser.pairMessageListener[friend.pairUid] == nil){
-//                self.obser.addMessageListenerForPair(friend.pairUid)
-//            }
-//        }
+        if(uiViewController.left){
+            //            if(self.obser.pairMessageListener[friend.pairUid] == nil){
+            //                self.obser.addMessageListenerForPair(friend.pairUid)
+            //            }
+            //            if(uiViewController.lastMessageDate != nil){
+            //                self.obser.pairLastMessagesDate[friend.pairUid] = uiViewController.lastMessageDate
+            //                self.obser.pairLastMessages[friend.pairUid] = uiViewController.lastMessage
+            //            }
+            if(!self.obser.messageListenerFlag[friend.pairUid]!){
+                //                self.obser.pairMessageListener[friend.pairUid]?.remove()
+                //                self.obser.pairMessageListener[friend.pairUid] = nil
+                self.obser.messageListenerFlag[friend.pairUid] = true
+                if( uiViewController.lastMessageDate != nil){
+                    self.obser.pairLastMessages[friend.pairUid] = uiViewController.lastMessage
+                    self.obser.pairLastMessagesDate[friend.pairUid] = uiViewController.lastMessageDate
+                    uiViewController.lastMessageDate = nil
+                    uiViewController.lastMessage  = ""
+                    
+                }
+                
+                
+            }
+        }
 //        else{
-//            if(self.obser.pairMessageListener[friend.pairUid] != nil){
-//                self.obser.pairMessageListener[friend.pairUid]?.remove()
-//                self.obser.pairMessageListener[friend.pairUid] = nil
+//            if(self.obser.messageListenerFlag[friend.pairUid]!){
+//                //                self.obser.pairMessageListener[friend.pairUid]?.remove()
+//                //                self.obser.pairMessageListener[friend.pairUid] = nil
+//                self.obser.messageListenerFlag[friend.pairUid] = false
 //            }
 //        }
+        //        self.obser.pairMessageListener[friend.pairUid] = uiViewController.messageListener
+        
         
     }
     
@@ -47,8 +68,7 @@ struct ChatView: UIViewControllerRepresentable {
         chatViewController.messageRef = self.db.collection("pairs").document(self.friend.pairUid).collection("messages")
         chatViewController.pairRef = self.db.collection("pairs").document(self.friend.pairUid).collection("typingIndicator")
         chatViewController.__THIS__ = self.obser.__THIS__
-//        self.obser.pairMessageListener[friend.pairUid]?.remove()
-//        chatViewController.li = self.obser.pairMessageListener[friend.pairUid]
+        self.obser.messageListenerFlag[friend.pairUid] = false
         return chatViewController
     }
     

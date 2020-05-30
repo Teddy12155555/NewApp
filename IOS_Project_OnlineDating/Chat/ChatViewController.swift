@@ -77,7 +77,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     //
     
     //    photo
-    let storageRef = Storage.storage(url: "gs://iosonlinedating-7cc49.appspot.com").reference()
+    let storageRef = Storage.storage().reference()
     private let imageURLNotSetKey = "NOTSET"
     
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
@@ -121,10 +121,11 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             "text" : "sending a photo"
             ] as [String : Any]
         let itemRef = messageRef!.addDocument(data: messageItem)
- 
         print(itemRef.documentID)
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
+        self.lastMessage = "sending a photo"
+        self.lastMessageDate = Date()
         return itemRef.documentID
     }
     func setImageURL(_ url: String, forPhotoMessageWithKey key: String) {
@@ -203,23 +204,12 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         super.viewDidLoad()
         //        換背景圖片
         let imgBackground:UIImageView = UIImageView(frame: self.view.bounds)
-        imgBackground.image = UIImage(named: "index_test")
+//        imgBackground.image = UIImage(named: "index_test")
         imgBackground.contentMode = UIView.ContentMode.scaleAspectFill
         imgBackground.clipsToBounds = true
         self.collectionView?.backgroundView = imgBackground
         //        換輸入匡顏色
         //        self.inputToolbar.contentView.backgroundColor = UIColor.blackColor()
-        
-        if let _friend = friend{
-            print("get friend success")
-            self.title = _friend.name
-        }
-        if let _messageRef = messageRef{
-            print("get message ref success")
-        }
-        if let _pairRef = pairRef{
-            print("get pair ref success")
-        }
         
         self.messageListener = self.observeMessages()
         self.typingListener = self.observeTyping()
@@ -234,13 +224,16 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.messageListener?.remove()
-        self.typingListener?.remove()
         self.messageListener = nil
+
+        self.typingListener?.remove()
         self.typingListener = nil
         self.left = true
         
+        
     }
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+//        self.addMessage(withId: senderId, name: self.__THIS__.Name, text: text!)
         let messageItem = [ // 2
             "sender_id": senderId,
             "receiver_id": friend?.id,
@@ -251,18 +244,22 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         JSQSystemSoundPlayer.jsq_playMessageSentSound() // 4
         finishSendingMessage() // 5
         isTyping = false
+        self.lastMessage = text!
+        self.lastMessageDate = Date()
     }
     
     private func observeMessages() -> ListenerRegistration {
         let messageQuery = messageRef?.order(by: "create_date", descending: false)
-        let listener = messageQuery?.addSnapshotListener(includeMetadataChanges: true) { querySnapshot, error in
+        let listener = messageQuery?.addSnapshotListener(includeMetadataChanges: false) { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error fetching snapshots: \(error!)")
                 return
             }
             let source = querySnapshot!.metadata.hasPendingWrites ? "Local" : "Server"
 //            if source == "Server"{
-                snapshot.documentChanges.forEach { diff in
+            
+//                snapshot.documentChanges.forEach { diff in
+            snapshot.documentChanges(includeMetadataChanges: false).forEach{ diff in
                     if (diff.type == .added) {
                         print("viewcontroller偵測到新訊息: uid: \(diff.document.documentID)")
                         let id = diff.document.data()["sender_id"] as! String
@@ -284,13 +281,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                                     self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
                                 }
                             }
-                            self.lastMessage = "sending a photo"
-                            self.lastMessageDate = Date()
                         }
                         else{
                             self.addMessage(withId: id, name: name, text: text)
-                            self.lastMessage = text
-                            self.lastMessageDate = Date()
                         }
                         self.finishSendingMessage()
                     }
