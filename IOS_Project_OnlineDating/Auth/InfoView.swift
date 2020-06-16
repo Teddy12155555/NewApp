@@ -17,7 +17,16 @@ struct InfoView: View {
     @EnvironmentObject var obs : Observer
     
     @Binding var Signup:Bool
-    @Binding var UserId:String
+    @Binding var SignupAccount : String
+    @Binding var SignupUid : String
+    
+    
+    
+    
+
+    
+    
+//    @Binding var UserId:String
     
     @State var Index:Int = 0
     
@@ -26,8 +35,6 @@ struct InfoView: View {
     @State var Sex = "Male"
     @State var Image_ = ""
     @State var ImageData : Data = .init(count: 0)
-    
-    
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
     
@@ -35,6 +42,43 @@ struct InfoView: View {
     
     let db = Firestore.firestore()
     let storage = Storage.storage().reference()
+    
+    func createUser(id:String , email:String , age:String , name:String , sex:String, image:String){
+        print(id + "想要註冊..")
+        self.db.collection("users").document(id).setData([
+            "email":email,
+            "age": age,
+            "name": name ,
+            "sex": sex,
+            "image": image
+        ])
+        self.createMatchData(id)
+    }
+    
+    
+    
+    func createMatchData(_ uid:String){
+        db.collection("users").getDocuments { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot {
+                for document in querySnapshot.documents {
+                    print(document.data())
+                    if(uid != document.documentID){
+                        self.db.collection("to_be_match").addDocument(data:
+                            [
+                                "match_status" : 0,
+                                "create_time" : Date(),
+                                "userA_id" : document.documentID,
+                                "userA_status" : 0,
+                                "userB_id" : uid,
+                                "userB_status" : 0,
+                                "update_time" : Date(),
+                        ])
+                    }
+                    
+                }
+            }
+        }
+    }
     
     var body: some View {
         
@@ -96,7 +140,8 @@ struct InfoView: View {
                         Button(action: {
                             if self.Age == ""{
                                 print("Input Error, Nil value")
-                            }else{
+                            }
+                            else{
                                 if Int(self.Age) == nil {
                                     print("Input Error, Not a Number")
                                     
@@ -181,7 +226,6 @@ struct InfoView: View {
                 VStack(alignment: .center, spacing: 15){
                 
                     Text("照片").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40))
-                    
                     VStack(spacing: 20){
                         
                         HStack( spacing: 25){
@@ -197,7 +241,8 @@ struct InfoView: View {
                                     Image(systemName: "plus.circle.fill")
                                     .resizable().frame(width:30,height: 30)
                                     .foregroundColor(.pink).offset(x:33,y:63)
-                                }else{
+                                }
+                                else{
                                     Image(uiImage:UIImage(data: ImageData)!).renderingMode(.original).resizable().frame(width: 100, height: 160)
                                 }
 
@@ -336,16 +381,10 @@ struct InfoView: View {
                                         return
                                     }
                                     // Create self as a new user
-                                    print(self.UserId)
-                                    self.db.collection("users").document("\(self.UserId)").updateData([
-                                        "age":"\(self.Age)",
-                                        "name":"\(self.Name)",
-                                        "sex":"\(self.Sex)",
-                                        "image":"\(url!)"
-                                    ])
-                                    // Create new relationship
-//                                    self.db.collection("relationship")
-//                                        .document("\(self.UserId)").setData(["selfinit":"true"])
+                                    print(self.SignupUid)
+                                    
+                                    
+                                    self.createUser(id: self.SignupUid, email: self.SignupAccount, age: self.Age, name: self.Name, sex: self.Sex, image: "\(url!)")
                                     
                                     self.Image_ = "\(url!)"
                                     print("Successed with URL : \(url!)")
@@ -423,11 +462,3 @@ struct ImagePicker : UIViewControllerRepresentable {
         
     }
 }
-
-struct In_pre:PreviewProvider {
-    static var previews: some View
-    {
-        InfoView(Signup: .constant(true), UserId: .constant(""))
-    }
-}
-

@@ -27,6 +27,7 @@ struct TopView : View {
                     Spacer()
                     
                     Button(action: {
+                        
                         self.obs.pageIndex = ENUM_CLASS.PAGES.SWIPE_PAGE
                         
                     }){
@@ -36,16 +37,8 @@ struct TopView : View {
                     Spacer()
                     
                     Button(action: {
-                        print("123")
-//                        heret to get lastMessages from firebase
-//                        MessagesListView.in
                         
-                        
-                        
-                        
-                        
-                        
-                        self.obs.pageIndex = ENUM_CLASS.PAGES.MSGLIST_PAGE
+                        self.obs.pageIndex = ENUM_CLASS.PAGES.CHAT_PAGE
                         
                     }){
                         Image("chat").resizable().frame(width: 35, height: 35)
@@ -114,5 +107,4 @@ struct TopView : View {
         
     }
 }
-
 

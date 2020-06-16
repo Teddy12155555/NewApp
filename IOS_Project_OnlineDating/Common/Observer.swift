@@ -18,8 +18,10 @@ class Observer: ObservableObject {
     @Published var pageIndex:ENUM_CLASS.PAGES = .AUTH_PAGE
     @Published var relationship:[String:String] = [:]
     
-    //    @Published var matchUsers = [User]()
-    //    @Published var pairUsers = [User]()
+    
+    @Published var SIGNAccount = ""
+    @Published var SIGNUserId = ""
+    
     
     
     //    這邊避免用array存 用dict存取資訊
@@ -31,11 +33,15 @@ class Observer: ObservableObject {
     //    這邊用來存每個pair之message listener key為pairUid
     @Published var pairMessageListener:[String:ListenerRegistration] = [:]
     @Published var messageListenerFlag:[String:Bool] = [:]
+    @Published var unreadMessageCount : [String:Int] = [:]
     
     
     //    key為pairUid value為訊息
     @Published var pairLastMessages:[String:String] = [:]
     @Published var pairLastMessagesDate:[String:Date] = [:]
+    
+    
+    @Published var CurrentMatchUser:User! = nil
     
     var db = Firestore.firestore()
     
@@ -43,6 +49,7 @@ class Observer: ObservableObject {
     
     init() {
     }
+    
     
     //
     func addMessageListenerForPair(_ pairUid:String){
@@ -56,6 +63,7 @@ class Observer: ObservableObject {
                 print("Error fetching snapshots: \(error!)")
                 return
             }
+            //            這邊是指是否要處理監聽的訊息
             if(self.messageListenerFlag[pairUid]!){
                 snapshot.documentChanges.forEach { diff in
                     if (diff.type == .added) {
@@ -64,7 +72,18 @@ class Observer: ObservableObject {
                         //                    print(diff.document.data()["text"] as? String ?? "")
                         self.pairLastMessagesDate[pairUid] = diff.document.data()["create_date"] as? Date ?? Date()
                         
+                        let receiver_id = diff.document.data()["receiver_id"] as? String ?? ""
+                        let isRead = diff.document.data()["isRead"] as? Bool ?? false
                         
+                        //                        給使用者的，且使用者未讀取
+                        if(receiver_id == self.__THIS__.Uid && !isRead){
+                            if(self.unreadMessageCount[pairUid] == nil){
+                                self.unreadMessageCount[pairUid] = 1
+                            }
+                            else{
+                                self.unreadMessageCount[pairUid]! += 1
+                            }
+                        }
                     }
                 }
             }
@@ -82,18 +101,8 @@ class Observer: ObservableObject {
     }
     
     func updateObs(user:User,swipeValue:CGFloat,degree:Double){
-        //        original version is users
         self.matchUsers[user.matchUid]?.swipe = swipeValue
         self.matchUsers[user.matchUid]?.degree = degree
-        
-        
-        //        for i in 0..<self.matchUsers.count{
-        //            if self.matchUsers[i].id == user.id{
-        //                self.matchUsers[i].swipe = swipeValue
-        //                self.matchUsers[i].degree = degree
-        //                self.last = i
-        //            }
-        //        }
     }
     
     //    TMING
@@ -138,28 +147,51 @@ class Observer: ObservableObject {
                     print("偵測到修改: 修改match uid: \(diff.document.documentID)")
                     let userA_status : Int = diff.document.data()["userA_status"] as! Int
                     let userB_status : Int = diff.document.data()["userB_status"] as! Int
-                    //                    這邊可能還要加狀態去判斷 match狀態
-                    //                    ex:已經左滑過 或右滑過就不會再出現在頁面上
-                    if(userA_status > 0 && userB_status > 0){
+                    //                    這邊判斷此match 是否已經成功變成pairs
+                    let match_status : Int = diff.document.data()["match_status"] as? Int ?? 0
+                    
+                    //                    這邊判斷說這個match 是否已經被創建過，避免重複創立到pairs
+                    if(userA_status > 0 && userB_status > 0 && match_status == 0 ){
                         print("配對成功")
+                        self.db.collection("to_be_match").document(diff.document.documentID).updateData([
+                            "match_status" : 1,
+                        ])
                         //                        取雙方UID
                         let userA_id = diff.document.data()["userA_id"] as! String
                         let userB_id = diff.document.data()["userB_id"] as! String
-                        let newPairRef = self.db.collection("pairs").addDocument(data:
-                            [
-                                "userA_id" : userA_id,
-                                "userB_id" : userB_id,
-                                "create_date" : Date(),
-                        ])
+                        let pairId_1 = userA_id + userB_id
+                        let pairId_2 = userB_id + userA_id
                         //                        判斷若跟本地用戶有關 把新的配對用戶資訊加入 local用戶之pairs名單中
                         //                        應該從array 裡移除對應match user
                         if(userA_id == self.__THIS__.Uid){
-                            self.addPairUser(userB_id, newPairRef.documentID)
+                            if(self.pairUsers[pairId_1] == nil && self.pairUsers[pairId_2] == nil){
+                                self.db.collection("pairs").document(pairId_1).setData([
+                                    "userA_id" : userA_id,
+                                    "userB_id" : userB_id,
+                                    "create_date" : Date(),
+                                    
+                                ])
+                                self.addPairUser(userB_id, pairId_1)
+                                SendNotification(title: "你有新的配對啦",body: "快去跟他聊天")
+                                print("新配對完成 pair uid: \(pairId_1)")
+                            }
+                            
                         }
                         else if (userB_id == self.__THIS__.Uid){
-                            self.addPairUser(userB_id, newPairRef.documentID)
+                            if(self.pairUsers[pairId_1] == nil && self.pairUsers[pairId_2] == nil){
+                                self.db.collection("pairs").document(pairId_1).setData([
+                                    "userA_id" : userA_id,
+                                    "userB_id" : userB_id,
+                                    "create_date" : Date(),
+                                    
+                                ])
+                                self.addPairUser(userA_id, pairId_1)
+                                SendNotification(title: "你有新的配對啦",body: "快去跟他聊天")
+                                print("新配對完成 pair uid: \(pairId_1)")
+                            }
+                            
                         }
-                        print("新配對完成 pair uid: \(newPairRef.documentID)")
+                        
                     }
                 }
                     //                    這邊代表一開始登入可能會先抓出所有新增的match id，也去檢查是否跟本地用戶有關
@@ -167,9 +199,10 @@ class Observer: ObservableObject {
                     print("偵測到新增：新增match uid: \(diff.document.documentID)")
                     let userA_id:String = diff.document.data()["userA_id"] as! String
                     let userB_id:String = diff.document.data()["userB_id"] as! String
-                    let status:Int = diff.document.data()["status"] as? Int ?? 0
-                    if(status == 0){
-                        if (userA_id == self.__THIS__.Uid){
+                    if (userA_id == self.__THIS__.Uid){
+                        //                    這邊可能還要加狀態去判斷 match狀態
+                        let userA_status = diff.document.data()["userA_status"] as? Int ?? 0
+                        if(userA_status == 0){
                             self.db.collection("users").document(userB_id).getDocument { (userDocument, error) in
                                 if let userDocument = userDocument, userDocument.exists {
                                     print(userB_id + "get")
@@ -186,7 +219,10 @@ class Observer: ObservableObject {
                                 }
                             }
                         }
-                        else if(userB_id == self.__THIS__.Uid){
+                    }
+                    else if(userB_id == self.__THIS__.Uid){
+                        let userB_status = diff.document.data()["userB_status"] as? Int ?? 0
+                        if(userB_status == 0){
                             self.db.collection("users").document(userA_id).getDocument { (userDocument, error) in
                                 if let userDocument = userDocument, userDocument.exists {
                                     print(userA_id + "get")
@@ -202,9 +238,7 @@ class Observer: ObservableObject {
                                     print("cant find \(userA_id) in users table")
                                 }
                             }
-                            
                         }
-                        
                     }
                     
                 }
@@ -265,17 +299,18 @@ class Observer: ObservableObject {
     
     func updateDB(user:User,liked:Bool){
         let db = Firestore.firestore()
+        let likeVal:Int = liked ? 1 : -1
         db.collection("to_be_match").document(user.matchUid).getDocument { (document, error) in
             if let document = document, document.exists {
                 print("更改math uid:" + document.documentID)
                 if(document.data()!["userA_id"] as! String == self.__THIS__.Uid){
                     db.collection("to_be_match").document(user.matchUid).updateData([
-                        "userA_status" : 1,
+                        "userA_status" : likeVal,
                     ])
                 }
                 else if(document.data()!["userB_id"] as! String == self.__THIS__.Uid){
                     db.collection("to_be_match").document(user.matchUid).updateData([
-                        "userB_status" : 1,
+                        "userB_status" : likeVal,
                     ])
                 }
                 print("modify success")
@@ -283,7 +318,6 @@ class Observer: ObservableObject {
             else {
                 print("Document does not exist")
             }
-            //            這邊代表更改matchUser中的位置
             if liked {
                 self.matchUsers[user.matchUid]?.swipe = 500
             }

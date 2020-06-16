@@ -41,10 +41,13 @@ struct ContentView: View {
                     BottomView()
                     
                 }
-                else if(self.obs.pageIndex == ENUM_CLASS.PAGES.MSGLIST_PAGE){
+                else if(self.obs.pageIndex == ENUM_CLASS.PAGES.CHAT_PAGE){
                     TopView()
-//                    Spacer()
                     MessagesListView()
+                }
+                else if(self.obs.pageIndex == ENUM_CLASS.PAGES.INFO_PAGE){
+                    TopView()
+                    Profile(name:self.obs.__THIS__.Name,image:self.obs.__THIS__.Image_,age: self.obs.__THIS__.Age,sex: self.obs.__THIS__.Sex)
                 }
                 
             }

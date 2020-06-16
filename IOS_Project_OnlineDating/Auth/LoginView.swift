@@ -227,6 +227,9 @@ struct LoginView:View {
                                 (userDocument,err) in
                                 if let userDocument = userDocument, userDocument.exists {
                                     self.obs.__THIS__.Name = userDocument.data()?["name"] as? String ?? "noname"
+                                    self.obs.__THIS__.Image_ = userDocument.data()?["image"] as? String ?? ""
+                                    self.obs.__THIS__.Age = userDocument.data()?["age"]as? String ?? ""
+                                    self.obs.__THIS__.Sex = userDocument.data()?["sex"] as? String ?? ""
                                 }
                                 else {
                                     print("cant find \(user.uid) in users table")

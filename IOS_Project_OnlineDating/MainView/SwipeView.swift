@@ -22,14 +22,20 @@ struct SwipeView : View{
     func getMatchUsers()-> [User]{
         return Array(self.obser.matchUsers.values)
     }
+    
+    func updateCurrentUser(user:User){
+        self.obser.CurrentMatchUser = user
+    }
 
     var body: some View{
 
         GeometryReader{geo in
             ZStack{
-                ForEach(self.getMatchUsers()){user in
+                ForEach(self.getMatchUsers()){(user) in
 //                    let user = self.obser.matchUsers[key]
+//                    self.updateCurrentUser(user: user)
                     SwipeInfoView(name: user.name, age: user.age, image: user.image, height: geo.size.height - 50).gesture(DragGesture().onChanged({(value) in
+                        self.updateCurrentUser(user: user)
                         if value.translation.width > 0 {
                             self.obser.updateObs(user: user, swipeValue: value.translation.width, degree: 8)
                         }
@@ -55,7 +61,8 @@ struct SwipeView : View{
                                 // Swipe Dislike
                                 self.obser.updateObs(user: user, swipeValue: -500, degree: 0)
                                 self.obser.updateDB(user: user, liked: false)
-                            }else{
+                            }
+                            else{
                                 self.obser.updateObs(user: user, swipeValue: 0, degree: 0)
                             }
 

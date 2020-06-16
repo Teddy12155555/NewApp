@@ -34,6 +34,8 @@
 		3F912089247A774C00DBF11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F912088247A774C00DBF11A /* GoogleService-Info.plist */; };
 		8D4543520DB29863C00A5828 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A6DC9E07CDCA120C12C545 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework */; };
 		D7F3C8BCFD2C03CE7D88F59B /* Pods_IOS_Project_OnlineDating.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45890EAAF930F55EF1929DE6 /* Pods_IOS_Project_OnlineDating.framework */; };
+		D86ADC222485F45A0019A63F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ADC212485F45A0019A63F /* Notifications.swift */; };
+		D86ADCCF248A75700019A63F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ADCCE248A75700019A63F /* ProfileView.swift */; };
 		D8AFEC262482332C006EE01D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFEC252482332C006EE01D /* ChatViewController.swift */; };
 		D8AFEC2824823350006EE01D /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFEC2724823350006EE01D /* ChatView.swift */; };
 		D8BF142C247E7D5400DC8967 /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BF142B247E7D5400DC8967 /* MessagesListView.swift */; };
@@ -94,6 +96,8 @@
 		56A6DC9E07CDCA120C12C545 /* Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOS_Project_OnlineDating_IOS_Project_OnlineDatingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E9BAC1F0B3E5F5D9842636 /* Pods-IOS_Project_OnlineDatingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Project_OnlineDatingTests.debug.xcconfig"; path = "Target Support Files/Pods-IOS_Project_OnlineDatingTests/Pods-IOS_Project_OnlineDatingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D03D25BA2AC0C229B542B07B /* Pods-IOS_Project_OnlineDating.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Project_OnlineDating.release.xcconfig"; path = "Target Support Files/Pods-IOS_Project_OnlineDating/Pods-IOS_Project_OnlineDating.release.xcconfig"; sourceTree = "<group>"; };
+		D86ADC212485F45A0019A63F /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		D86ADCCE248A75700019A63F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D8AFEC252482332C006EE01D /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D8AFEC2724823350006EE01D /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		D8BF142B247E7D5400DC8967 /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				3F581094247BE7B700A3709F /* LoginView.swift */,
 				3F581096247BE7DE00A3709F /* SignUpView.swift */,
 				3F5810A1247C2D0700A3709F /* InfoView.swift */,
+				D86ADCCE248A75700019A63F /* ProfileView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				3F58109B247C2B8200A3709F /* Observer.swift */,
 				3F58109F247C2CB600A3709F /* DataType.swift */,
 				3F5810A3247C2F0800A3709F /* EnumClass.swift */,
+				D86ADC212485F45A0019A63F /* Notifications.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -525,10 +531,12 @@
 				D8AFEC2824823350006EE01D /* ChatView.swift in Sources */,
 				3F91205D247A760000DBF11A /* ContentView.swift in Sources */,
 				3F581090247BB77A00A3709F /* Property.swift in Sources */,
+				D86ADC222485F45A0019A63F /* Notifications.swift in Sources */,
 				3F912058247A760000DBF11A /* SceneDelegate.swift in Sources */,
 				3F581095247BE7B800A3709F /* LoginView.swift in Sources */,
 				3F58109E247C2C6F00A3709F /* Loader.swift in Sources */,
 				D8BF142C247E7D5400DC8967 /* MessagesListView.swift in Sources */,
+				D86ADCCF248A75700019A63F /* ProfileView.swift in Sources */,
 				3F581093247BC32100A3709F /* AuthView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,6 +34,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var lastMessageDate:Date? = nil
     
     var left:Bool = false
+    var initReadFlag:Bool!
     
     
     
@@ -118,7 +119,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             "sender_id": senderId!,
             "reciever_id": friend!.id,
             "create_date" : Date(),
-            "text" : "sending a photo"
+            "text" : "sending a photo",
+            "isRead" : false
             ] as [String : Any]
         let itemRef = messageRef!.addDocument(data: messageItem)
         print(itemRef.documentID)
@@ -208,15 +210,21 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         imgBackground.contentMode = UIView.ContentMode.scaleAspectFill
         imgBackground.clipsToBounds = true
         self.collectionView?.backgroundView = imgBackground
+        
+//        self.collectionView.backgroundColor  =
+        
         //        換輸入匡顏色
         //        self.inputToolbar.contentView.backgroundColor = UIColor.blackColor()
         
         self.messageListener = self.observeMessages()
         self.typingListener = self.observeTyping()
         self.left = false
+        self.initReadFlag = true
         //        這邊設置頭像大小
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
+        self.lastMessage = ""
+        self.lastMessageDate = nil
     }
     //
     
@@ -229,6 +237,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.typingListener?.remove()
         self.typingListener = nil
         self.left = true
+        self.initReadFlag = false
         
         
     }
@@ -238,7 +247,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             "sender_id": senderId,
             "receiver_id": friend?.id,
             "text": text!,
-            "create_date": date!
+            "create_date": date!,
+            "isRead" : false,
             ] as [String : Any]
         messageRef!.addDocument(data: messageItem)
         JSQSystemSoundPlayer.jsq_playMessageSentSound() // 4
@@ -265,11 +275,19 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         let id = diff.document.data()["sender_id"] as! String
                         let text = diff.document.data()["text"] as! String
                         var name:String!
+                        self.lastMessage = text
+                        self.lastMessageDate = diff.document.data()["create_date"] as? Date ?? Date()
                         if id == self.senderId {
+                            //                       訊息是使用者發的
                             name = self.__THIS__.Name
                         }
                         else{
+//                            訊息是對方發的
                             name = self.friend?.name
+//                            把訊息設為已讀，因為使用者點進來了
+                            self.messageRef?.document(diff.document.documentID).updateData([
+                                "isRead" : true,
+                            ])
                         }
                         if let photoURL:String = diff.document.data()["photoURL"] as? String { // 1
                             // 2

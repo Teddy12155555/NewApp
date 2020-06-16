@@ -22,6 +22,11 @@ struct BottomView : View {
             
             HStack{
                 Button(action: {
+                    if(self.obs.CurrentMatchUser != nil){
+                        print(self.obs.CurrentMatchUser.id)
+                        self.obs.updateObs(user: self.obs.CurrentMatchUser, swipeValue: -500, degree: 0)
+                        self.obs.updateDB(user: self.obs.CurrentMatchUser, liked: false)
+                    }
                     
                     
                 }){
@@ -36,6 +41,11 @@ struct BottomView : View {
                 Button(action: {
                     
                     print(self.obs.last)
+                    if(self.obs.CurrentMatchUser != nil){
+                        print(self.obs.CurrentMatchUser.id)
+                        self.obs.updateObs(user: self.obs.CurrentMatchUser, swipeValue: 500, degree: 0)
+                        self.obs.updateDB(user: self.obs.CurrentMatchUser, liked: true)
+                    }
                     
                 }){
                     Image("like").resizable().frame(width: 35, height: 35).padding()

@@ -19,55 +19,24 @@ struct SignUpView:View {
     @Binding var ACCOUNT_ : String
     @Binding var PASSWORD : String
     
+//    @Binding var USER_ID : String
+    
+    @Binding var SignupAccount : String
+    @Binding var SignupUid : String
+    
+    
     @State var Index = ENUM_CLASS.SIGN_UP_PAGES.EMAIL_PAGE
     
     @State var SIGNAccount = ""
     @State var SIGNPassword = ""
-    // User
-    @State var USER_ID = ""
+        
+
     
     let db = Firestore.firestore()
 
     
     
-    func createUser(){
-        print(self.USER_ID + "想要註冊..")
-        self.db.collection("users").document("\(self.USER_ID)").setData([
-            "email":"\(self.ACCOUNT_)",
-//            "age":"",
-//            "name":"",
-//            "sex":"",
-//            "image":""
-        ])
-        createMatchData(self.USER_ID)
-    }
-    
-    
-    
-    func createMatchData(_ uid:String){
-        db.collection("users").getDocuments { (querySnapshot, error) in
-           if let querySnapshot = querySnapshot {
-              for document in querySnapshot.documents {
-                print(document.data())
-                if(uid != document.documentID){
-                    self.db.collection("to_be_match").addDocument(data:
-                        [
-                            "status" : 0,
-                            "create_time" : Date(),
-                            "userA_id" : document.documentID,
-                            "userA_status" : 0,
-                            "userB_id" : uid,
-                            "userB_status" : 0,
-                            "update_time" : Date(),
-                    ])
-                }
-                
-              }
-           }
-        }
-//        InfoView(Signup: $Signup, UserId: $USER_ID)
 
-    }
     
     
     
@@ -156,10 +125,9 @@ struct SignUpView:View {
                                     // Finish sign up
                                     self.ACCOUNT_ = self.SIGNAccount
                                     self.PASSWORD = self.SIGNPassword
+                                    self.SignupAccount = self.SIGNAccount
+                                    self.SignupUid = result?.user.uid as! String
                                     self.Index = .INFO_PAGE
-                                    self.USER_ID = result?.user.uid as! String
-                                    self.createUser()
-
                                 }
                                 
                             }
@@ -183,7 +151,7 @@ struct SignUpView:View {
             else if Index == ENUM_CLASS.SIGN_UP_PAGES.INFO_PAGE{
                 
                 // Call InfoView
-                InfoView(Signup: $Signup, UserId: $USER_ID)
+                InfoView(Signup: self.$Signup, SignupAccount: self.$SignupAccount, SignupUid: self.$SignupUid)
             }
         }
         
@@ -191,8 +159,8 @@ struct SignUpView:View {
 }
 
 
-struct pr:PreviewProvider {
-    static var previews: some View{
-        SignUpView(Signup: .constant(true), ACCOUNT_: .constant(""), PASSWORD: .constant(""))
-    }
-}
+//struct pr:PreviewProvider {
+//    static var previews: some View{
+//        SignUpView(Signup: .constant(true), ACCOUNT_: .constant(""), PASSWORD: .constant(""))
+//    }
+//}
