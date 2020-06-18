@@ -34,33 +34,33 @@ func SendNotification(title: String,body:String){
 }
 
 
-struct Alert:View {
-    
-    var body: some View{
-        ZStack{
-            VStack{
-                
-                HStack{
-                    
-                    Button(action: {}){
-                        Image("match").renderingMode(.original).resizable().frame(width: 100, height: 100)
-                    }.background(Color.white).clipShape(Circle()).padding(.top,20)
-                    
-                    
-                }
-                Text("Hello")
-                HStack{
-                    Button(action: {}){
-                        Text("馬上聊天")
-                    }
-                    
-                    Button(action: {}){
-                        Text("Close")
-                    }
-                }
-            }
-        }.frame(width: 200, height: 250).cornerRadius(40).background(Color.gray)
-            
-    }
-}
+//struct Alert:View {
+//
+//    var body: some View{
+//        ZStack{
+//            VStack{
+//
+//                HStack{
+//
+//                    Button(action: {}){
+//                        Image("match").renderingMode(.original).resizable().frame(width: 100, height: 100)
+//                    }.background(Color.white).clipShape(Circle()).padding(.top,20)
+//
+//
+//                }
+//                Text("Hello")
+//                HStack{
+//                    Button(action: {}){
+//                        Text("馬上聊天")
+//                    }
+//
+//                    Button(action: {}){
+//                        Text("Close")
+//                    }
+//                }
+//            }
+//        }.frame(width: 200, height: 250).cornerRadius(40).background(Color.gray)
+//
+//    }
+//}
 

@@ -52,6 +52,7 @@ struct ChatView: UIViewControllerRepresentable {
         
         
         
+        
 //        未讀訊息歸0
         self.obser.unreadMessageCount[friend.pairUid]? = 0
             

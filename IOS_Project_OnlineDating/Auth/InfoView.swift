@@ -19,14 +19,9 @@ struct InfoView: View {
     @Binding var Signup:Bool
     @Binding var SignupAccount : String
     @Binding var SignupUid : String
+    @Binding var SignupPassword : String
     
-    
-    
-    
-
-    
-    
-//    @Binding var UserId:String
+    //    @Binding var UserId:String
     
     @State var Index:Int = 0
     
@@ -34,23 +29,28 @@ struct InfoView: View {
     @State var Age = ""
     @State var Sex = "Male"
     @State var Image_ = ""
+    @State var Intro:String = ""
     @State var ImageData : Data = .init(count: 0)
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
     
     @State var picker = false
     
+    @State var showingAlert = false
+    @State var AlertTitle = ""
+    @State var AlertMessage = ""
     let db = Firestore.firestore()
     let storage = Storage.storage().reference()
     
-    func createUser(id:String , email:String , age:String , name:String , sex:String, image:String){
+    func createUser(id:String , email:String , age:String , name:String , sex:String, image:String , intro:String){
         print(id + "想要註冊..")
         self.db.collection("users").document(id).setData([
             "email":email,
             "age": age,
             "name": name ,
             "sex": sex,
-            "image": image
+            "image": image,
+            "intro": intro,
         ])
         self.createMatchData(id)
     }
@@ -89,7 +89,7 @@ struct InfoView: View {
             if self.Index == 0{
                 // Name
                 VStack(alignment: .center, spacing: 15){
-                
+                    
                     Text("叫啥名字").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40)).padding(.bottom,100)
                     
                     
@@ -98,22 +98,30 @@ struct InfoView: View {
                         TextField("Name",text: $Name).padding(.leading,12).font(.system(size: 20)).autocapitalization(.none).foregroundColor(.secondary)
                         
                         Divider()
-                        .frame(height: 2)
-                        .padding(.horizontal, 30)
+                            .frame(height: 2)
+                            .padding(.horizontal, 30)
                             .background(Color.gray)
                         
                         Button(action: {
-                            
+                            self.showingAlert = false
                             if self.Name != ""{
                                 self.Index += 1
                             }
-                       
+                            else{
+                                self.showingAlert = true
+                                self.AlertTitle = "註冊資訊錯誤"
+                                self.AlertMessage = "填一下名字啦"
+                            }
+                            
                         }){
                             Text("下一步").foregroundColor(.white).padding().frame(width: 200,height: 40)
                         }.background(LinearGradient(gradient: .init(colors: [Color("Color9"),Color("Color10")]), startPoint: .leading, endPoint: .trailing))
-                        .cornerRadius(40)
-                        .offset( y: 15)
-                        .shadow(radius: 25)
+                            .cornerRadius(40)
+                            .offset( y: 15)
+                            .shadow(radius: 25)
+                            .alert(isPresented: $showingAlert){
+                                Alert(title: Text(self.AlertTitle), message: Text(self.AlertMessage), dismissButton: .default(Text("OK")))
+                        }
                         
                     }.padding(12)
                     
@@ -124,7 +132,7 @@ struct InfoView: View {
             else if self.Index == 1{
                 // Age
                 VStack(alignment: .center, spacing: 15){
-                
+                    
                     Text("幾歲").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40)).padding(.bottom,100)
                     
                     
@@ -133,19 +141,29 @@ struct InfoView: View {
                         TextField("Age",text: $Age).padding(.leading,12).font(.system(size: 20)).autocapitalization(.none).foregroundColor(.secondary)
                         
                         Divider()
-                        .frame(height: 2)
-                        .padding(.horizontal, 30)
+                            .frame(height: 2)
+                            .padding(.horizontal, 30)
                             .background(Color.gray)
                         
                         Button(action: {
+                            self.showingAlert = false
+                            self.AlertMessage = ""
+                            self.AlertTitle = ""
                             if self.Age == ""{
                                 print("Input Error, Nil value")
+                                self.showingAlert = true
+                                self.AlertTitle = "註冊資訊錯誤"
+                                self.AlertMessage = "填一下年齡啦"
                             }
                             else{
                                 if Int(self.Age) == nil {
                                     print("Input Error, Not a Number")
+                                    self.showingAlert = true
+                                    self.AlertTitle = "註冊資訊錯誤"
+                                    self.AlertMessage = "年齡要是整數喔"
                                     
-                                }else{
+                                }
+                                else{
                                     self.Index += 1
                                 }
                             }
@@ -153,9 +171,12 @@ struct InfoView: View {
                         }){
                             Text("下一步").foregroundColor(.white).padding().frame(width: 200,height: 40)
                         }.background(LinearGradient(gradient: .init(colors: [Color("Color9"),Color("Color10")]), startPoint: .leading, endPoint: .trailing))
-                        .cornerRadius(40)
-                        .offset( y: 15)
-                        .shadow(radius: 25)
+                            .cornerRadius(40)
+                            .offset( y: 15)
+                            .shadow(radius: 25)
+                            .alert(isPresented: $showingAlert){
+                                Alert(title: Text(self.AlertTitle), message: Text(self.AlertMessage), dismissButton: .default(Text("OK")))
+                        }
                         
                     }.padding(12)
                     
@@ -168,7 +189,7 @@ struct InfoView: View {
                 // Sex
                 
                 VStack(alignment: .center, spacing: 15){
-                
+                    
                     Text("性別").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40)).padding(.bottom,70)
                     
                     
@@ -178,12 +199,12 @@ struct InfoView: View {
                             Button(action: {
                                 
                                 self.Sex = "Male"
-                               
+                                
                             }){
                                 Text("男生").foregroundColor(.gray).padding().frame(width: 120,height: 40)
                             }.background(Sex == "Female" ? Color.white : Color.init("Color4"))
-                            .cornerRadius(40)
-                            .shadow(radius: 25)
+                                .cornerRadius(40)
+                                .shadow(radius: 25)
                                 .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,20)
                             
                             Button(action: {
@@ -192,14 +213,14 @@ struct InfoView: View {
                             }){
                                 Text("女生").foregroundColor(.gray).padding().frame(width: 120,height: 40)
                             }.background(Sex == "Male" ? Color.white : Color.init("Color4"))
-                            .cornerRadius(40)
-                            .shadow(radius: 25)
+                                .cornerRadius(40)
+                                .shadow(radius: 25)
                                 .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,20)
                             
-                                
+                            
                         }.padding(.bottom,30)
                         
-                    
+                        
                         
                         Button(action: {
                             
@@ -212,9 +233,9 @@ struct InfoView: View {
                         }){
                             Text("下一步").foregroundColor(.white).padding().frame(width: 200,height: 40)
                         }.background(LinearGradient(gradient: .init(colors: [Color("Color9"),Color("Color10")]), startPoint: .leading, endPoint: .trailing))
-                        .cornerRadius(40)
-                        .offset( y: 15)
-                        .shadow(radius: 25)
+                            .cornerRadius(40)
+                            .offset( y: 15)
+                            .shadow(radius: 25)
                         
                     }.padding(12)
                     
@@ -223,8 +244,55 @@ struct InfoView: View {
                 }.padding(.horizontal,18).offset( y: 15)
             }
             else if self.Index == 3{
+                // Age
                 VStack(alignment: .center, spacing: 15){
+                    
+                    Text("自我介紹").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40)).padding(.bottom,100)
+                    
+                    
+                    VStack{
+                        
+                        TextField("填下自我介紹",text: $Intro).padding(.leading,12).font(.system(size: 20)).autocapitalization(.none).foregroundColor(.secondary).lineLimit(nil)
+                        
+                        Divider()
+                            .frame(height: 2)
+                            .padding(.horizontal, 30)
+                            .background(Color.gray)
+                        
+                        Button(action: {
+                            self.showingAlert = false
+                            self.AlertMessage = ""
+                            self.AlertTitle = ""
+                            if self.Intro == ""{
+                                self.showingAlert = true
+                                self.AlertTitle = "註冊資訊錯誤"
+                                self.AlertMessage = "要填好自我介紹，可以吸引更多小哥哥小姐姐"
+                            }
+                            else{
+                                self.Index += 1
+                            }
+                            
+                        }){
+                            Text("下一步").foregroundColor(.white).padding().frame(width: 200,height: 40)
+                        }.background(LinearGradient(gradient: .init(colors: [Color("Color9"),Color("Color10")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(40)
+                            .offset( y: 15)
+                            .shadow(radius: 25)
+                            .alert(isPresented: $showingAlert){
+                                Alert(title: Text(self.AlertTitle), message: Text(self.AlertMessage), dismissButton: .default(Text("OK")))
+                        }
+                        
+                    }.padding(12)
+                    
+                    
+                    
+                }.padding(.horizontal,18).offset( y: 15)
                 
+            }
+                
+            else if self.Index == 4{
+                VStack(alignment: .center, spacing: 15){
+                    
                     Text("照片").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40))
                     VStack(spacing: 20){
                         
@@ -232,23 +300,23 @@ struct InfoView: View {
                             
                             // Image1
                             Button(action: {
-
+                                
                                 self.picker.toggle()
-
+                                
                             }){
-
+                                
                                 if ImageData.count == 0{
                                     Image(systemName: "plus.circle.fill")
-                                    .resizable().frame(width:30,height: 30)
-                                    .foregroundColor(.pink).offset(x:33,y:63)
+                                        .resizable().frame(width:30,height: 30)
+                                        .foregroundColor(.pink).offset(x:33,y:63)
                                 }
                                 else{
                                     Image(uiImage:UIImage(data: ImageData)!).renderingMode(.original).resizable().frame(width: 100, height: 160)
                                 }
-
+                                
                             }.frame(width: 100, height: 160,alignment: .center)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
-                                ).background(Color("Color11")).cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
+                            ).background(Color("Color11")).cornerRadius(10)
                             
                             // Image2
                             Button(action: {
@@ -260,22 +328,22 @@ struct InfoView: View {
                                     .foregroundColor(.pink).offset(x:33,y:63)
                                 
                             }.frame(width: 100, height: 160,alignment: .center)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
-                                ).background(Color("Color11")).cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
+                            ).background(Color("Color11")).cornerRadius(10)
                             
                             // Image3
                             Button(action: {}){
                                 
                                 Image(systemName: "plus.circle.fill")
-                                .resizable().frame(width:30,height: 30)
-                                .foregroundColor(.pink).offset(x:33,y:63)
+                                    .resizable().frame(width:30,height: 30)
+                                    .foregroundColor(.pink).offset(x:33,y:63)
                                 
                                 
                             }.frame(width: 100, height: 160,alignment: .center)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
-                                ).background(Color("Color11")).cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
+                            ).background(Color("Color11")).cornerRadius(10)
                             
-                        
+                            
                         }
                         HStack( spacing: 25){
                             // Image1
@@ -286,8 +354,8 @@ struct InfoView: View {
                                     .foregroundColor(.pink).offset(x:33,y:63)
                                 
                             }.frame(width: 100, height: 160,alignment: .center)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
-                                ).background(Color("Color11")).cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
+                            ).background(Color("Color11")).cornerRadius(10)
                             
                             // Image2
                             Button(action: {}){
@@ -297,8 +365,8 @@ struct InfoView: View {
                                     .foregroundColor(.pink).offset(x:33,y:63)
                                 
                             }.frame(width: 100, height: 160,alignment: .center)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
-                                ).background(Color("Color11")).cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
+                            ).background(Color("Color11")).cornerRadius(10)
                             
                             // Image3
                             Button(action: {}){
@@ -308,10 +376,10 @@ struct InfoView: View {
                                     .foregroundColor(.pink).offset(x:33,y:63)
                                 
                             }.frame(width: 100, height: 160,alignment: .center)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
-                                ).background(Color("Color11")).cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
+                            ).background(Color("Color11")).cornerRadius(10)
                             
-                        
+                            
                         }
                         HStack( spacing: 25){
                             // Image1
@@ -322,8 +390,8 @@ struct InfoView: View {
                                     .foregroundColor(.pink).offset(x:33,y:63)
                                 
                             }.frame(width: 100, height: 160,alignment: .center)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
-                                ).background(Color("Color11")).cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
+                            ).background(Color("Color11")).cornerRadius(10)
                             
                             // Image2
                             Button(action: {}){
@@ -333,8 +401,8 @@ struct InfoView: View {
                                     .foregroundColor(.pink).offset(x:33,y:63)
                                 
                             }.frame(width: 100, height: 160,alignment: .center)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
-                                ).background(Color("Color11")).cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
+                            ).background(Color("Color11")).cornerRadius(10)
                             
                             // Image3
                             Button(action: {}){
@@ -344,10 +412,10 @@ struct InfoView: View {
                                     .foregroundColor(.pink).offset(x:33,y:63)
                                 
                             }.frame(width: 100, height: 160,alignment: .center)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
-                                ).background(Color("Color11")).cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray,style: StrokeStyle(lineWidth: 3, dash: [10] ))
+                            ).background(Color("Color11")).cornerRadius(10)
                             
-                        
+                            
                         }
                         
                         /*
@@ -356,26 +424,47 @@ struct InfoView: View {
                          */
                         
                         Button(action: {
+                            self.showingAlert = false
                             
                             if self.ImageData.count == 0{
                                 print("Error with Img")
+                                self.showingAlert = true
+                                self.AlertTitle = "註冊資訊錯誤"
+                                self.AlertMessage = "上傳一張照片吧"
                                 return
+                            }
+                            
+                            
+                            
+                            
+                            print(self.SignupAccount)
+                            print(self.SignupPassword)
+                            Auth.auth().createUser(withEmail: self.SignupAccount, password: self.SignupPassword){(result,err) in
+                                if err != nil{
+                                    print("Sign up Error with bad code: \(err)")
+                                    return
+                                }
+                                
+                                self.SignupUid = result?.user.uid as! String
+                                
                             }
                             
                             // Create New users insert to DB
                             let IMAGE_ROOT = "profilePic"
                             
-                            let uid = Auth.auth().currentUser?.uid
+//                            let uid = Auth.auth().currentUser?.uid
+                            let uid = self.SignupAccount
+                            
                             let metadata = StorageMetadata()
                             metadata.contentType = "image/jpeg"
                             
-                            self.storage.child(IMAGE_ROOT).child("\(uid!).jpg").putData(self.ImageData, metadata:metadata){(metadata,err) in
+                            self.storage.child(IMAGE_ROOT).child("\(uid).jpg").putData(self.ImageData, metadata:metadata){(metadata,err) in
                                 if err != nil {
                                     print((err?.localizedDescription)!)
                                     return
                                 }
                                 
-                                self.storage.child(IMAGE_ROOT).child("\(uid!).jpg").downloadURL{(url,err) in
+                                self.storage.child(IMAGE_ROOT).child("\(uid).jpg").downloadURL{(url,err) in
                                     if err != nil{
                                         print((err?.localizedDescription)!)
                                         return
@@ -384,7 +473,7 @@ struct InfoView: View {
                                     print(self.SignupUid)
                                     
                                     
-                                    self.createUser(id: self.SignupUid, email: self.SignupAccount, age: self.Age, name: self.Name, sex: self.Sex, image: "\(url!)")
+                                    self.createUser(id: self.SignupUid, email: self.SignupAccount, age: self.Age, name: self.Name, sex: self.Sex, image: "\(url!)" ,intro:self.Intro)
                                     
                                     self.Image_ = "\(url!)"
                                     print("Successed with URL : \(url!)")
@@ -397,13 +486,16 @@ struct InfoView: View {
                         }){
                             Text("完成").foregroundColor(.white).padding().frame(width: 180,height: 30)
                         }.background(LinearGradient(gradient: .init(colors: [Color("Color9"),Color("Color10")]), startPoint: .leading, endPoint: .trailing))
-                        .cornerRadius(30)
-                        .shadow(radius: 25)
+                            .cornerRadius(30)
+                            .shadow(radius: 25)
                             .offset(y:-10)
+                            .alert(isPresented: $showingAlert){
+                                Alert(title: Text(self.AlertTitle), message: Text(self.AlertMessage), dismissButton: .default(Text("OK")))
+                        }
                         
                     }.padding(10)
                     
-                    }.padding(.horizontal,18)
+                }.padding(.horizontal,18)
                     .sheet(isPresented: $picker,content: {
                         
                         ImagePicker(picker: self.$picker, imagedata: self.$ImageData)

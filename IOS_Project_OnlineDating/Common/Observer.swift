@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 
 class Observer: ObservableObject {
     
-    @Published var __THIS__  = THIS(id: "", Uid: "", Name: "", Age: "", Image_: "", Sex: "")
+    @Published var __THIS__  = THIS(id: "", Uid: "", Name: "", Age: "", Image_: "", Sex: "", Intro: "")
     @Published var users = [User]()
     @Published var last = -1
     @Published var pageIndex:ENUM_CLASS.PAGES = .AUTH_PAGE
@@ -211,7 +211,8 @@ class Observer: ObservableObject {
                                     let image = userDocument.data()!["image"] as? String ?? ""
                                     let age = userDocument.data()!["age"] as? String ?? ""
                                     let name = userDocument.data()!["name"] as? String ?? ""
-                                    self.matchUsers[diff.document.documentID] = User(id: uid, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0, matchUid:diff.document.documentID)
+                                    let intro = userDocument.data()!["intro"] as? String ?? ""
+                                    self.matchUsers[diff.document.documentID] = User(id: uid, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0, intro:intro, matchUid:diff.document.documentID)
                                     print("match user size = \(self.matchUsers.count)")
                                 }
                                 else {
@@ -231,7 +232,8 @@ class Observer: ObservableObject {
                                     let image = userDocument.data()!["image"] as? String ?? ""
                                     let age = userDocument.data()!["age"] as? String ?? ""
                                     let name = userDocument.data()!["name"] as? String ?? ""
-                                    self.matchUsers[diff.document.documentID] = User(id: uid, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0, matchUid:diff.document.documentID)
+                                    let intro = userDocument.data()!["intro"] as? String ?? ""
+                                    self.matchUsers[diff.document.documentID] = User(id: uid, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0, intro:intro, matchUid:diff.document.documentID)
                                     print("match user size = \(self.matchUsers.count)")
                                 }
                                 else {
@@ -255,9 +257,10 @@ class Observer: ObservableObject {
                 let age = userDocument.get("age") as? String ?? ""
                 let image = userDocument.get("image") as? String ?? ""
                 let sex = userDocument.get("sex") as? String ?? ""
+                let intro = userDocument.get("intro") as? String ?? ""
                 let id = userDocument.documentID
                 print("when pairs get user: \(id)")
-                self.pairUsers[pairUid] = User(id: id, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0,pairUid: pairUid)
+                self.pairUsers[pairUid] = User(id: id, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0, intro: intro,pairUid: pairUid)
                 //                self.pairUsers.append(User(id: id, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0,pairUid: pairUid))
                 print("pairs user size \(self.pairUsers.count)")
             }
@@ -339,7 +342,7 @@ class Observer: ObservableObject {
             for j in 0..<self.users.count{
                 if self.users[j].id == self.__THIS__.Uid{
                     
-                    self.__THIS__.SetThis(id_: self.users[j].id, uid: self.users[j].id, name: self.users[j].name, age: self.users[j].age, image: self.users[j].image, sex: self.users[j].sex)
+                    self.__THIS__.SetThis(id_: self.users[j].id, uid: self.users[j].id, name: self.users[j].name, age: self.users[j].age, image: self.users[j].image, sex: self.users[j].sex, intro: self.users[j].intro)
                     print("Find self : \(self.__THIS__)")
                     self.users.remove(at: j)
                     break

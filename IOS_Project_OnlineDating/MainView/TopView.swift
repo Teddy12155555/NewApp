@@ -47,37 +47,6 @@ struct TopView : View {
             }
             else if self.obs.pageIndex == ENUM_CLASS.PAGES.CHAT_PAGE{
                 HStack(alignment: .top){
-                    
-                    
-                    Button(action: {
-                        
-                        self.obs.pageIndex = ENUM_CLASS.PAGES.SWIPE_PAGE
-                        
-                    }){
-                        Image(systemName: "flame.fill").resizable().frame(width: 30, height: 35)
-                    }.foregroundColor(.red)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        
-                        self.obs.pageIndex = ENUM_CLASS.PAGES.CHAT_PAGE
-                        
-                    }){
-                        Image("chat").resizable().frame(width: 35, height: 35)
-                    }.foregroundColor(.gray)
-                    
-                    Spacer()
-                }.padding()
-            }
-            else{
-                
-                
-                 
-                HStack(alignment: .top){
-                    
-                    Spacer()
-                    
                     Button(action: {
                         
                         self.obs.pageIndex = ENUM_CLASS.PAGES.INFO_PAGE
@@ -94,11 +63,49 @@ struct TopView : View {
                         
                     }){
                         Image(systemName: "flame.fill").resizable().frame(width: 30, height: 35)
+                    }.foregroundColor(.gray)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        
+                        self.obs.pageIndex = ENUM_CLASS.PAGES.CHAT_PAGE
+                        
+                    }){
+                        Image("chat").resizable().frame(width: 35, height: 35)
+                    }.foregroundColor(.red)
+                }.padding()
+            }
+            else{
+                
+                HStack(alignment: .top){
+                    Button(action: {
+                        
+                        self.obs.pageIndex = ENUM_CLASS.PAGES.INFO_PAGE
+                        
+                    }){
+                        Image("person").resizable().frame(width: 35, height: 35)
                     }.foregroundColor(.red)
                     
+                    Spacer()
                     
+                    Button(action: {
+                        
+                        self.obs.pageIndex = ENUM_CLASS.PAGES.SWIPE_PAGE
+                        
+                    }){
+                        Image(systemName: "flame.fill").resizable().frame(width: 30, height: 35)
+                    }.foregroundColor(.gray)
                     
+                    Spacer()
                     
+                    Button(action: {
+                        
+                        self.obs.pageIndex = ENUM_CLASS.PAGES.CHAT_PAGE
+                        
+                    }){
+                        Image("chat").resizable().frame(width: 35, height: 35)
+                    }.foregroundColor(.gray)
                 }.padding()
             }
             

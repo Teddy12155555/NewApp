@@ -36,6 +36,8 @@ struct MessagesListView: View {
                 
             }.navigationBarTitle(Text(""),displayMode: .inline)
                 .navigationBarHidden(true)
+            .navigationBarTitle()
+            
             
             
         }.frame(minWidth: UIScreen.main.bounds.width, idealWidth: UIScreen.main.bounds.width, maxWidth: UIScreen.main.bounds.width,  maxHeight: .infinity)

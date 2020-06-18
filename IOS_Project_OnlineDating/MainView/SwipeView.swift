@@ -32,9 +32,8 @@ struct SwipeView : View{
         GeometryReader{geo in
             ZStack{
                 ForEach(self.getMatchUsers()){(user) in
-//                    let user = self.obser.matchUsers[key]
-//                    self.updateCurrentUser(user: user)
-                    SwipeInfoView(name: user.name, age: user.age, image: user.image, height: geo.size.height - 50).gesture(DragGesture().onChanged({(value) in
+
+                    SwipeInfoView(name: user.name, age: user.age, image: user.image, intro:user.intro, height: geo.size.height - 50).gesture(DragGesture().onChanged({(value) in
                         self.updateCurrentUser(user: user)
                         if value.translation.width > 0 {
                             self.obser.updateObs(user: user, swipeValue: value.translation.width, degree: 8)
@@ -83,6 +82,7 @@ struct SwipeInfoView:View {
     var name = ""
     var age = ""
     var image = ""
+    var intro = ""
     var height:CGFloat = 0
     var body:some View{
         ZStack{
@@ -94,6 +94,7 @@ struct SwipeInfoView:View {
                     VStack(alignment: .leading,content: {
                         Text(name).fontWeight(.heavy).font(.system(size: 25)).foregroundColor(.white)
                         Text(age).foregroundColor(.white)
+                        Text(intro).foregroundColor(.white)
                     })
                     
                     Spacer()

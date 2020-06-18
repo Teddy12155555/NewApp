@@ -23,7 +23,10 @@ struct LoginView:View {
     let db = Firestore.firestore()
     @State var LoginUid:String!
     
+    @State private var showingAlert = false
     
+    @State var AlertTitle:String = ""
+    @State var AlertMessage:String  = ""
     
     @State var Visble:Bool = true
     
@@ -207,6 +210,9 @@ struct LoginView:View {
             
             // Button Login
             Button(action: {
+                self.showingAlert = false
+                self.AlertTitle = ""
+                self.AlertMessage = ""
                 
                 if self.Account != "" && self.Password != "" {
                     
@@ -214,8 +220,12 @@ struct LoginView:View {
                         
                         if err != nil{
                             print("Login Error with bad code: \(err)")
+                            self.showingAlert = true
+                            self.AlertTitle = "登入錯誤喔"
+                            self.AlertMessage = "信箱密碼錯誤"
                             return
                         }
+
 
                         if let user = Auth.auth().currentUser{
                             print("Success with User : \(user.uid)")
@@ -230,6 +240,7 @@ struct LoginView:View {
                                     self.obs.__THIS__.Image_ = userDocument.data()?["image"] as? String ?? ""
                                     self.obs.__THIS__.Age = userDocument.data()?["age"]as? String ?? ""
                                     self.obs.__THIS__.Sex = userDocument.data()?["sex"] as? String ?? ""
+                                    self.obs.__THIS__.Intro  = userDocument.data()?["intro"] as? String ?? ""
                                 }
                                 else {
                                     print("cant find \(user.uid) in users table")
@@ -237,20 +248,27 @@ struct LoginView:View {
                             }
                             self.obs.pageIndex =  ENUM_CLASS.PAGES.SWIPE_PAGE
                         }
-                        else{
-                            print("Fail")
-                        }
+
+                        
                         
                     }
                     
                 }
-                
+                else{
+                    self.showingAlert = true
+                    self.AlertTitle = "登入錯誤喔"
+                    self.AlertMessage = "信箱密碼不能為空"
+                }
             }){
                 Text("Login").foregroundColor(.white).padding().frame(width: 200,height: 40)
             }.background(LinearGradient(gradient: .init(colors: [Color("Color3"),Color("Color4")]), startPoint: .leading, endPoint: .trailing))
                 .cornerRadius(40)
                 .offset( y: 15)
                 .shadow(radius: 25)
+                .alert(isPresented: $showingAlert){
+                    Alert(title: Text(self.AlertTitle), message: Text(self.AlertMessage), dismissButton: .default(Text("OK")))
+                    
+            }
             
             // Button Sign up
             HStack{
@@ -259,7 +277,8 @@ struct LoginView:View {
                 Button(action: {
                     
                     self.Signup.toggle()
-                    
+
+
                 }){
                     Text("註冊一個").underline().foregroundColor(.white)
                 }
