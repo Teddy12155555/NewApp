@@ -27,7 +27,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var __THIS__:THIS!
     var typingListener:ListenerRegistration? = nil
     var messageListener:ListenerRegistration? = nil
-//    var alreadyCreateListener:Bool = false
+    //    var alreadyCreateListener:Bool = false
     
     
     var lastMessage:String = ""
@@ -36,6 +36,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var left:Bool = false
     var initReadFlag:Bool!
     
+    
+    var friendImage : UIImage! = nil
+//    var friendImageURL
     
     
     //            isTyping
@@ -170,7 +173,12 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return nil
+        
+        
+        let avatar = JSQMessagesAvatarImageFactory.avatarImage(with: friendImage, diameter: 30)
+
+
+        return avatar
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -191,6 +199,12 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
         
+        
+        
+        cell.avatarImageView.layer.cornerRadius = cell.avatarImageView.frame.size.height / 2;
+        cell.avatarImageView.layer.masksToBounds = true
+        cell.avatarImageView.layer.borderWidth = 0;
+        
         if message.senderId == senderId {
             cell.textView?.textColor = UIColor.white
         }
@@ -200,18 +214,18 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         return cell
     }
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //        換背景圖片
         let imgBackground:UIImageView = UIImageView(frame: self.view.bounds)
-//        imgBackground.image = UIImage(named: "index_test")
+        //        imgBackground.image = UIImage(named: "index_test")
         imgBackground.contentMode = UIView.ContentMode.scaleAspectFill
         imgBackground.clipsToBounds = true
         self.collectionView?.backgroundView = imgBackground
         
-//        self.collectionView.backgroundColor  =
+        //        self.collectionView.backgroundColor  =
         
         //        換輸入匡顏色
         //        self.inputToolbar.contentView.backgroundColor = UIColor.blackColor()
@@ -221,10 +235,15 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.left = false
         self.initReadFlag = true
         //        這邊設置頭像大小
-        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
+        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize(width: 35, height: 35)
+
+
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         self.lastMessage = ""
         self.lastMessageDate = nil
+        
+//        self.navigationItem.title =
+        
     }
     //
     
@@ -233,7 +252,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         super.viewDidDisappear(animated)
         self.messageListener?.remove()
         self.messageListener = nil
-
+        
         self.typingListener?.remove()
         self.typingListener = nil
         self.left = true
@@ -242,7 +261,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
     }
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-//        self.addMessage(withId: senderId, name: self.__THIS__.Name, text: text!)
+        //        self.addMessage(withId: senderId, name: self.__THIS__.Name, text: text!)
         let messageItem = [ // 2
             "sender_id": senderId,
             "receiver_id": friend?.id,
@@ -266,56 +285,56 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 return
             }
             let source = querySnapshot!.metadata.hasPendingWrites ? "Local" : "Server"
-//            if source == "Server"{
+            //            if source == "Server"{
             
-//                snapshot.documentChanges.forEach { diff in
+            //                snapshot.documentChanges.forEach { diff in
             snapshot.documentChanges(includeMetadataChanges: false).forEach{ diff in
-                    if (diff.type == .added) {
-                        print("viewcontroller偵測到新訊息: uid: \(diff.document.documentID)")
-                        let id = diff.document.data()["sender_id"] as! String
-                        let text = diff.document.data()["text"] as! String
-                        var name:String!
-                        self.lastMessage = text
-                        self.lastMessageDate = diff.document.data()["create_date"] as? Date ?? Date()
-                        if id == self.senderId {
-                            //                       訊息是使用者發的
-                            name = self.__THIS__.Name
-                        }
-                        else{
-//                            訊息是對方發的
-                            name = self.friend?.name
-//                            把訊息設為已讀，因為使用者點進來了
-                            self.messageRef?.document(diff.document.documentID).updateData([
-                                "isRead" : true,
-                            ])
-                        }
-                        if let photoURL:String = diff.document.data()["photoURL"] as? String { // 1
-                            // 2
-                            if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
-                                // 3
-                                self.addPhotoMessage(withId: id, key: diff.document.documentID, mediaItem: mediaItem)
-                                // 4
-                                if photoURL.hasPrefix("gs://") {
-                                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
-                                }
+                if (diff.type == .added) {
+                    print("viewcontroller偵測到新訊息: uid: \(diff.document.documentID)")
+                    let id = diff.document.data()["sender_id"] as! String
+                    let text = diff.document.data()["text"] as! String
+                    var name:String!
+                    self.lastMessage = text
+                    
+                    let stmp = diff.document.data()["create_date"] as? Timestamp ?? Timestamp()
+                    self.lastMessageDate = stmp.dateValue()
+                    if id == self.senderId {
+                        //                       訊息是使用者發的
+                        name = self.__THIS__.Name
+                    }
+                    else{
+                        //                            訊息是對方發的
+                        name = self.friend?.name
+                        //                            把訊息設為已讀，因為使用者點進來了
+                        self.messageRef?.document(diff.document.documentID).updateData([
+                            "isRead" : true,
+                        ])
+                    }
+                    if let photoURL:String = diff.document.data()["photoURL"] as? String { // 1
+                        // 2
+                        if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
+                            // 3
+                            self.addPhotoMessage(withId: id, key: diff.document.documentID, mediaItem: mediaItem)
+                            // 4
+                            if photoURL.hasPrefix("gs://") {
+                                self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
                             }
                         }
-                        else{
-                            self.addMessage(withId: id, name: name, text: text)
-                        }
-                        self.finishSendingMessage()
                     }
-                    else if (diff.type == .modified){
-                        //                    圖片被改掉了
-                        print("viewcontroller偵測到修改訊息: uid: \(diff.document.documentID)")
-                        let key = diff.document.documentID
-                        if let photoURL = diff.document.data()["photoURL"] as? String { // 2
-                            // The photo has been updated.
-                            if photoURL != "NOTSET"{
-                                if let mediaItem = self.photoMessageMap[key] { // 3
-                                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key) // 4
-                                }
-                                
+                    else{
+                        self.addMessage(withId: id, name: name, text: text)
+                    }
+                    self.finishSendingMessage()
+                }
+                else if (diff.type == .modified){
+                    //                    圖片被改掉了
+                    print("viewcontroller偵測到修改訊息: uid: \(diff.document.documentID)")
+                    let key = diff.document.documentID
+                    if let photoURL = diff.document.data()["photoURL"] as? String { // 2
+                        // The photo has been updated.
+                        if photoURL != "NOTSET"{
+                            if let mediaItem = self.photoMessageMap[key] { // 3
+                                self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key) // 4
                             }
                             
                         }
@@ -323,9 +342,11 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     }
                     
                 }
-
                 
-//            }
+            }
+            
+            
+            //            }
         }
         return listener as! ListenerRegistration
     }

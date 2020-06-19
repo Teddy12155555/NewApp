@@ -13,6 +13,7 @@ import Firebase
 struct ChatView: UIViewControllerRepresentable {
     
     @EnvironmentObject var obser:Observer
+
     
     var db = Firestore.firestore()
     var friend:User!
@@ -38,9 +39,13 @@ struct ChatView: UIViewControllerRepresentable {
         }
         
     }
-    
     func makeUIViewController(context: Context) -> ChatViewController {
         let chatViewController = ChatViewController()
+        chatViewController.navigationItem.title = self.friend.name
+        
+        self.navigationBarTitle(Text(self.friend.name))
+        
+        
         chatViewController.title = self.friend.name
         chatViewController.senderId = self.obser.__THIS__.Uid
         chatViewController.senderDisplayName = self.obser.__THIS__.Name
@@ -48,6 +53,12 @@ struct ChatView: UIViewControllerRepresentable {
         chatViewController.messageRef = self.db.collection("pairs").document(self.friend.pairUid).collection("messages")
         chatViewController.pairRef = self.db.collection("pairs").document(self.friend.pairUid).collection("typingIndicator")
         chatViewController.__THIS__ = self.obser.__THIS__
+        
+        let _url = URL(string: self.friend.image)!
+        if let data = try? Data(contentsOf: _url) {
+            chatViewController.friendImage = UIImage(data: data)
+        }
+        
         self.obser.messageListenerFlag[friend.pairUid] = false
         
         

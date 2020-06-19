@@ -70,7 +70,10 @@ class Observer: ObservableObject {
                         print("偵測到新訊息: uid: \(diff.document.documentID)")
                         self.pairLastMessages[pairUid] = diff.document.data()["text"] as? String ?? ""
                         //                    print(diff.document.data()["text"] as? String ?? "")
-                        self.pairLastMessagesDate[pairUid] = diff.document.data()["create_date"] as? Date ?? Date()
+                        let stamp = diff.document.data()["create_date"] as? Timestamp ?? Timestamp()
+                        let date = stamp.dateValue()
+//                        print(date)
+                        self.pairLastMessagesDate[pairUid] = date
                         
                         let receiver_id = diff.document.data()["receiver_id"] as? String ?? ""
                         let isRead = diff.document.data()["isRead"] as? Bool ?? false

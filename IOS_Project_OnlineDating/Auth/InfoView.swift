@@ -41,7 +41,7 @@ struct InfoView: View {
     @State var AlertMessage = ""
     let db = Firestore.firestore()
     let storage = Storage.storage().reference()
-    
+
     func createUser(id:String , email:String , age:String , name:String , sex:String, image:String , intro:String){
         print(id + "想要註冊..")
         self.db.collection("users").document(id).setData([
@@ -205,7 +205,7 @@ struct InfoView: View {
                             }.background(Sex == "Female" ? Color.white : Color.init("Color4"))
                                 .cornerRadius(40)
                                 .shadow(radius: 25)
-                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,20)
+                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,25)
                             
                             Button(action: {
                                 
@@ -215,19 +215,15 @@ struct InfoView: View {
                             }.background(Sex == "Male" ? Color.white : Color.init("Color4"))
                                 .cornerRadius(40)
                                 .shadow(radius: 25)
-                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,20)
+                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,25)
                             
                             
-                        }.padding(.bottom,30)
+                            }.padding(.bottom,20)
                         
                         
                         
                         Button(action: {
                             
-                            // Create New users insert to DB
-                            //self.db.collection("users").document("\(self.UserId)").setData(["age":"\(self.Age)","name":"\(self.Name)","sex":"\(self.Sex)","image":""])
-                            
-                            //self.Signup = false
                             self.Index += 1
                             
                         }){

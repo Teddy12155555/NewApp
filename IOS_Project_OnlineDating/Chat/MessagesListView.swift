@@ -9,19 +9,15 @@ struct MessagesListView: View {
     @EnvironmentObject var obs : Observer
     
     func getPairsUser()-> [User]{
-        return Array(self.obs.pairUsers.values)
+        var beSortedArray = Array(self.obs.pairUsers.values)
+        beSortedArray = beSortedArray.sorted(by: { self.obs.pairLastMessagesDate[$0.pairUid] ?? Date()  > self.obs.pairLastMessagesDate[$1.pairUid] ?? Date() })
+        return beSortedArray
+
     }
     func getPairUserKeys()-> [String]{
         return Array(self.obs.pairUsers.keys)
     }
     init(){
-        //        coloredNavAppearance.configureWithOpaqueBackground()
-        //        coloredNavAppearance.backgroundColor = .systemBlue
-        //        coloredNavAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        //        coloredNavAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        //
-        //        UINavigationBar.appearance().standardAppearance = coloredNavAppearance
-        //        UINavigationBar.appearance().scrollEdgeAppearance = coloredNavAppearance
         
     }
     
@@ -32,18 +28,14 @@ struct MessagesListView: View {
                 NavigationLink(destination: ChatView(friend:i)){
                     cellView(user : i)
                 }
-                
-                
-            }.navigationBarTitle(Text(""),displayMode: .inline)
+                .navigationBarTitle(Text("Friends List"),displayMode: .inline)
+            }
                 .navigationBarHidden(true)
-            .navigationBarTitle()
-            
-            
+
             
         }.frame(minWidth: UIScreen.main.bounds.width, idealWidth: UIScreen.main.bounds.width, maxWidth: UIScreen.main.bounds.width,  maxHeight: .infinity)
             .clipShape(Rounded())
-        
-        
+
     }
     
 }
