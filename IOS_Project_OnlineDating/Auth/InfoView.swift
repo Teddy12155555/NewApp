@@ -35,7 +35,8 @@ struct InfoView: View {
     @State var image: UIImage?
     
     @State var picker = false
-    
+    @ObservedObject private var keyboard = KeyboardResponder()
+
     @State var showingAlert = false
     @State var AlertTitle = ""
     @State var AlertMessage = ""
@@ -127,7 +128,9 @@ struct InfoView: View {
                     
                     
                     
-                }.padding(.horizontal,18).offset( y: 15)
+                }.padding(.horizontal,18).offset( y: 15).padding(.bottom, keyboard.currentHeight)
+                .edgesIgnoringSafeArea(.bottom)
+                .animation(.easeOut(duration: 0.5))
             }
             else if self.Index == 1{
                 // Age
@@ -182,7 +185,9 @@ struct InfoView: View {
                     
                     
                     
-                }.padding(.horizontal,18).offset( y: 15)
+                }.padding(.horizontal,18).offset( y: 15).padding(.bottom, keyboard.currentHeight)
+                .edgesIgnoringSafeArea(.bottom)
+                .animation(.easeOut(duration: 0.5))
                 
             }
             else if self.Index == 2{
@@ -191,8 +196,6 @@ struct InfoView: View {
                 VStack(alignment: .center, spacing: 15){
                     
                     Text("性別").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40)).padding(.bottom,70)
-                    
-                    
                     VStack{
                         
                         HStack{
@@ -282,7 +285,9 @@ struct InfoView: View {
                     
                     
                     
-                }.padding(.horizontal,18).offset( y: 15)
+                }.padding(.horizontal,18).offset( y: 15).padding(.bottom, keyboard.currentHeight)
+                .edgesIgnoringSafeArea(.bottom)
+                .animation(.easeOut(duration: 0.5))
                 
             }
                 

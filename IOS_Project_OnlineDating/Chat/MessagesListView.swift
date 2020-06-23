@@ -25,7 +25,7 @@ struct MessagesListView: View {
         NavigationView {
             List(getPairsUser()){i in
                 
-                NavigationLink(destination: ChatView(friend:i)){
+                NavigationLink(destination: ChatView(friend:i).navigationBarTitle(Text(i.name))){
                     cellView(user : i)
                 }
                 .navigationBarTitle(Text("Friends List"),displayMode: .inline)

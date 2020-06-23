@@ -224,9 +224,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         imgBackground.contentMode = UIView.ContentMode.scaleAspectFill
         imgBackground.clipsToBounds = true
         self.collectionView?.backgroundView = imgBackground
-        
-        //        self.collectionView.backgroundColor  =
-        
+                
         //        換輸入匡顏色
         //        self.inputToolbar.contentView.backgroundColor = UIColor.blackColor()
         

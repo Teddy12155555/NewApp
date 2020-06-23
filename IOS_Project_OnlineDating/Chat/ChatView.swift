@@ -41,9 +41,9 @@ struct ChatView: UIViewControllerRepresentable {
     }
     func makeUIViewController(context: Context) -> ChatViewController {
         let chatViewController = ChatViewController()
-        chatViewController.navigationItem.title = self.friend.name
         
-        self.navigationBarTitle(Text(self.friend.name))
+        
+//        self.navigationBarTitle(Text(self.friend.name))
         
         
         chatViewController.title = self.friend.name
@@ -58,6 +58,8 @@ struct ChatView: UIViewControllerRepresentable {
         if let data = try? Data(contentsOf: _url) {
             chatViewController.friendImage = UIImage(data: data)
         }
+        
+        chatViewController.navigationItem.title = self.friend.name
         
         self.obser.messageListenerFlag[friend.pairUid] = false
         

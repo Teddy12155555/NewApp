@@ -19,7 +19,6 @@ struct BottomView : View {
     var body: some View{
         
         GeometryReader{geo in
-            
             HStack{
                 Button(action: {
                     if(self.obs.CurrentMatchUser != nil){
@@ -39,9 +38,9 @@ struct BottomView : View {
                 .padding(.horizontal,30)
                 
                 Button(action: {
-                    
-                    print(self.obs.last)
+                    print("clicked like btn")
                     if(self.obs.CurrentMatchUser != nil){
+                        print("clicked like btn")
                         print(self.obs.CurrentMatchUser.id)
                         self.obs.updateObs(user: self.obs.CurrentMatchUser, swipeValue: 500, degree: 0)
                         self.obs.updateDB(user: self.obs.CurrentMatchUser, liked: true)

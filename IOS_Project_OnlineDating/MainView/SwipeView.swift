@@ -20,6 +20,7 @@ struct SwipeView : View{
     @EnvironmentObject var obser:Observer
     
     func getMatchUsers()-> [User]{
+
         return Array(self.obser.matchUsers.values)
     }
     
@@ -33,7 +34,8 @@ struct SwipeView : View{
             ZStack{
                 ForEach(self.getMatchUsers()){(user) in
 
-                    SwipeInfoView(name: user.name, age: user.age, image: user.image, intro:user.intro, height: geo.size.height - 50).gesture(DragGesture().onChanged({(value) in
+                    
+                    SwipeInfoView( name: user.name, age: user.age, image: user.image, intro:user.intro, height: geo.size.height - 50).gesture(DragGesture().onChanged({(value) in
                         self.updateCurrentUser(user: user)
                         if value.translation.width > 0 {
                             self.obser.updateObs(user: user, swipeValue: value.translation.width, degree: 8)
@@ -71,6 +73,7 @@ struct SwipeView : View{
                     ).offset(x: user.swipe)
                         .rotationEffect(.init(degrees: user.degree))
                         .animation(.spring())
+                    
                 }
             }
             
@@ -84,6 +87,10 @@ struct SwipeInfoView:View {
     var image = ""
     var intro = ""
     var height:CGFloat = 0
+    
+
+    
+    
     var body:some View{
         ZStack{
             

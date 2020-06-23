@@ -76,7 +76,7 @@
 		3F58109F247C2CB600A3709F /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
 		3F5810A1247C2D0700A3709F /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		3F5810A3247C2F0800A3709F /* EnumClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumClass.swift; sourceTree = "<group>"; };
-		3F912052247A760000DBF11A /* IOS_Project_OnlineDating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_Project_OnlineDating.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F912052247A760000DBF11A /* MeetNTUST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetNTUST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F912055247A760000DBF11A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F912057247A760000DBF11A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3F91205A247A760000DBF11A /* IOS_Project_OnlineDating.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IOS_Project_OnlineDating.xcdatamodel; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		3F912053247A760000DBF11A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3F912052247A760000DBF11A /* IOS_Project_OnlineDating.app */,
+				3F912052247A760000DBF11A /* MeetNTUST.app */,
 				3F91206B247A760600DBF11A /* IOS_Project_OnlineDatingTests.xctest */,
 				3F912076247A760600DBF11A /* IOS_Project_OnlineDatingUITests.xctest */,
 			);
@@ -292,7 +292,7 @@
 				3F8676BF247A7F120071E7E1 /* SDWebImage */,
 			);
 			productName = IOS_Project_OnlineDating;
-			productReference = 3F912052247A760000DBF11A /* IOS_Project_OnlineDating.app */;
+			productReference = 3F912052247A760000DBF11A /* MeetNTUST.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3F91206A247A760600DBF11A /* IOS_Project_OnlineDatingTests */ = {
@@ -713,7 +713,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "NTUST.IOS-Project-OnlineDating";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MeetNTUST;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -734,7 +734,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "NTUST.IOS-Project-OnlineDating";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MeetNTUST;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
