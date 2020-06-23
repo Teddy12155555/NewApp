@@ -21,6 +21,8 @@ struct InfoView: View {
     @Binding var SignupUid : String
     @Binding var SignupPassword : String
     
+    @State private var scale: CGFloat = 1
+
     //    @Binding var UserId:String
     
     @State var Index:Int = 0
@@ -33,8 +35,18 @@ struct InfoView: View {
     @State var ImageData : Data = .init(count: 0)
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
-    
     @State var picker = false
+    @State var matchSex = "Both"
+    
+    
+    @State var width:CGFloat = 0
+    
+    @State var width1: CGFloat = 200
+
+    var totalWidth  = UIScreen.main.bounds.width / 2
+    
+    
+    
     @ObservedObject private var keyboard = KeyboardResponder()
 
     @State var showingAlert = false
@@ -43,23 +55,36 @@ struct InfoView: View {
     let db = Firestore.firestore()
     let storage = Storage.storage().reference()
 
-    func createUser(id:String , email:String , age:String , name:String , sex:String, image:String , intro:String){
+    func createUser(id:String , email:String , age:String , name:String , sex:String, image:String , intro:String,matchSex:String,matchAgeFrom:Int,matchAgeTo:Int){
         print(id + "想要註冊..")
         self.db.collection("users").document(id).setData([
             "email":email,
-            "age": age,
+            "age": Int(age),
             "name": name ,
             "sex": sex,
             "image": image,
             "intro": intro,
+            "matchAgeFrom":matchAgeFrom,
+            "matchAgeTo":matchAgeTo,
+            "matchSex":matchSex,
         ])
-        self.createMatchData(id)
+        self.createMatchData(id,matchSex: matchSex,matchAgeFrom: matchAgeFrom,matchAgeTo: matchAgeTo)
     }
     
     
     
-    func createMatchData(_ uid:String){
-        db.collection("users").getDocuments { (querySnapshot, error) in
+    func createMatchData(_ uid:String,matchSex:String,matchAgeFrom:Int,matchAgeTo:Int){
+        var sexArray = [String]()
+        if(matchSex == "Both"){
+            sexArray.append("Male")
+            sexArray.append("Female")
+        }
+        else{
+            sexArray.append(matchSex)
+        }
+        
+        db.collection("users").whereField("age", isLessThanOrEqualTo: matchAgeTo).whereField("age", isGreaterThanOrEqualTo: matchAgeFrom).whereField("sex", in: sexArray)
+            .getDocuments { (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
                 for document in querySnapshot.documents {
                     print(document.data())
@@ -80,6 +105,7 @@ struct InfoView: View {
             }
         }
     }
+    
     
     var body: some View {
         
@@ -192,7 +218,7 @@ struct InfoView: View {
             }
             else if self.Index == 2{
                 // Sex
-                
+    
                 VStack(alignment: .center, spacing: 15){
                     
                     Text("性別").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40)).padding(.bottom,70)
@@ -243,7 +269,7 @@ struct InfoView: View {
                 }.padding(.horizontal,18).offset( y: 15)
             }
             else if self.Index == 3{
-                // Age
+                // 自我介紹
                 VStack(alignment: .center, spacing: 15){
                     
                     Text("自我介紹").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40)).padding(.bottom,100)
@@ -290,8 +316,120 @@ struct InfoView: View {
                 .animation(.easeOut(duration: 0.5))
                 
             }
+            else if self.Index == 4 {
+                VStack(alignment: .center, spacing: 15){
+                    
+                    Text("條件篩選").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40)).padding(.bottom,70)
+                    VStack{
+                        HStack{
+                            Button(action: {
+                                self.matchSex = "Male"
+                                
+                            }){
+                                Text("男生").foregroundColor(.gray).padding().frame(width: 80,height: 40)
+                            }.background(matchSex == "Male" ? Color.init("Color4") : Color.white )
+                                .cornerRadius(40)
+                                .shadow(radius: 25)
+                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,25)
+                            
+                            Button(action: {
+                                
+                                self.matchSex = "Female"
+                            }){
+                                Text("女生").foregroundColor(.gray).padding().frame(width: 80,height: 40)
+                            }.background(matchSex == "Female" ? Color.init("Color4") : Color.white )
+                                .cornerRadius(40)
+                                .shadow(radius: 25)
+                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,25)
+                            
+                            
+                            Button(action: {
+                                
+                                self.matchSex = "Both"
+                            }){
+                                Text("都行").foregroundColor(.gray).padding().frame(width: 80,height: 40)
+                            }.background(matchSex == "Both" ? Color.init("Color4") : Color.white )
+                                .cornerRadius(40)
+                                .shadow(radius: 25)
+                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,25)
+                            
+                            
+                            
+                            
+                            
+                            }.padding(.bottom,20)
+                        
+                    
+                    
+                    
+                }.padding(.horizontal,18).offset( y: 15)
                 
-            else if self.Index == 4{
+                VStack{
+                    
+                    ZStack(alignment: .leading) {
+                        Rectangle()
+                            .fill(Color.black.opacity(0.2))
+                            .frame(width:self.totalWidth+18  ,height:6)
+                        
+                        Rectangle()
+                        .fill(Color.black)
+                            .frame(width: self.width1 - self.width ,height: 6)
+                            .offset(x:self.width + 18)
+                        
+                        HStack(spacing: 0){
+                            
+                            Circle()
+                                .fill(Color.black)
+                                .frame(width:18,height: 18)
+                                .offset(x:self.width)
+                                .gesture(
+                                    DragGesture().onChanged({(value) in
+                                        if(value.location.x >= 0 && value.location.x <= self.width1){
+                                            self.width = value.location.x
+                                        }
+                                    })
+                            )
+                            
+                            Circle()
+                            .fill(Color.black)
+                            .frame(width:18,height: 18)
+                                .offset(x:self.width1)
+                            .gesture(
+                                    DragGesture().onChanged({(value) in
+                                        if(value.location.x <= self.totalWidth && value.location.x >= self.width){
+                                            self.width1 = value.location.x
+
+                                        }
+                                        
+                                    })
+                            
+                            )
+                        }
+                        
+                    }
+                    
+                    Text("\(Int(width/totalWidth*100)) - \(Int(width1/totalWidth*100))歲").fontWeight(.bold).padding(.bottom,20)
+                    
+                    Button(action: {
+                            
+                            self.Index += 1
+                            
+                        }){
+                            Text("下一步").foregroundColor(.white).padding().frame(width: 200,height: 40)
+                        }.background(LinearGradient(gradient: .init(colors: [Color("Color9"),Color("Color10")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(40)
+                            .offset( y: 15)
+                            .shadow(radius: 25)
+                        
+                    }.padding(12)
+                    
+                    
+                }.padding(.horizontal,18).offset( y: 15)
+
+                
+            }
+                
+            else if self.Index == 5 {
                 VStack(alignment: .center, spacing: 15){
                     
                     Text("照片").foregroundColor(.black).fontWeight(.heavy).font(.system(size: 40))
@@ -474,7 +612,7 @@ struct InfoView: View {
                                     print(self.SignupUid)
                                     
                                     
-                                    self.createUser(id: self.SignupUid, email: self.SignupAccount, age: self.Age, name: self.Name, sex: self.Sex, image: "\(url!)" ,intro:self.Intro)
+                                    self.createUser(id: self.SignupUid, email: self.SignupAccount, age: self.Age, name: self.Name, sex: self.Sex, image: "\(url!)" ,intro:self.Intro,matchSex:self.matchSex,matchAgeFrom:Int(self.width/self.totalWidth*100),matchAgeTo:Int(self.width1/self.totalWidth*100))
                                     
                                     self.Image_ = "\(url!)"
                                     print("Successed with URL : \(url!)")

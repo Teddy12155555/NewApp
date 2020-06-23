@@ -19,11 +19,14 @@ struct THIS : Identifiable  {
     var Image_ : String
     var Sex : String
     var Intro : String
+    var matchSex:String = "Both"
+    var matchAgeFrom:Int = 0
+    var matchAgeTo:Int = 99
     
     mutating func SetUID(uid:String){
         Uid = uid
     }
-    mutating func SetThis(id_:String,uid:String,name:String,age:String,image:String,sex:String,intro:String){
+    mutating func SetThis(id_:String,uid:String,name:String,age:String,image:String,sex:String,intro:String,matchsex:String,matchagefrom:Int,matchageto:Int){
         
         id = id_
         Uid = uid
@@ -32,6 +35,10 @@ struct THIS : Identifiable  {
         Image_ = image
         Sex = sex
         Intro = intro
+        matchSex = matchsex
+        matchAgeFrom = matchagefrom
+        matchAgeTo = matchageto
+        
     }
 }
 
@@ -46,6 +53,9 @@ struct User : Identifiable {
     var intro:String
     var pairUid:String = ""
     var matchUid:String = ""
+    var matchSex:String = "Both"
+    var matchAgeFrom:Int = 0
+    var matchAgeTo:Int = 99
 }
 
 //

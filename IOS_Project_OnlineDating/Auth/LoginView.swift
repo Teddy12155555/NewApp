@@ -113,9 +113,14 @@ struct LoginView:View {
                                 if let userDocument = userDocument, userDocument.exists {
                                     self.obs.__THIS__.Name = userDocument.data()?["name"] as? String ?? "noname"
                                     self.obs.__THIS__.Image_ = userDocument.data()?["image"] as? String ?? ""
-                                    self.obs.__THIS__.Age = userDocument.data()?["age"]as? String ?? ""
+                                    self.obs.__THIS__.Age = String(userDocument.data()?["age"]as? Int ?? 20)
                                     self.obs.__THIS__.Sex = userDocument.data()?["sex"] as? String ?? ""
                                     self.obs.__THIS__.Intro  = userDocument.data()?["intro"] as? String ?? ""
+                                    self.obs.__THIS__.matchSex = userDocument.data()?["matchSex"] as? String ?? "Both"
+                                    self.obs.__THIS__.matchAgeFrom = userDocument.data()?["matchAgeFrom"] as? Int ?? 0
+                                    self.obs.__THIS__.matchAgeTo = userDocument.data()?["matchAgeTo"] as? Int ?? 99
+                                    
+                                    
                                 }
                                 else {
                                     print("cant find \(user.uid) in users table")

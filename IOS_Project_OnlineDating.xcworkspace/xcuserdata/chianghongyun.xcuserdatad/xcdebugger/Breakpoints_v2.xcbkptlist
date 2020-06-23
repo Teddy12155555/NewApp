@@ -14,8 +14,8 @@
             filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "592"
+            endingLineNumber = "592"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
+            startingLineNumber = "612"
+            endingLineNumber = "612"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "addPairUser(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "createPairsListener()"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,8 +206,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "addPairUser(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +222,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "addPairUser(_:_:)"
             landmarkType = "7">
             <Locations>
@@ -270,8 +270,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "createPairsListener()"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "createPairsListener()"
             landmarkType = "7">
          </BreakpointContent>
@@ -590,8 +590,8 @@
             filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
+            startingLineNumber = "615"
+            endingLineNumber = "615"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -606,9 +606,9 @@
             filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "createUser(id:email:age:name:sex:image:intro:)"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "createUser(id:email:age:name:sex:image:intro:matchSex:matchAgeFrom:matchAgeTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -686,9 +686,9 @@
             filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "init(name:image:age:sex:intro:)"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "init(name:image:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -702,9 +702,9 @@
             filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "init(name:image:age:sex:intro:)"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "init(name:image:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -718,9 +718,9 @@
             filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "init(name:image:age:sex:intro:)"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "init(name:image:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -734,9 +734,9 @@
             filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "init(name:image:age:sex:intro:)"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "init(name:image:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -750,9 +750,9 @@
             filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "init(name:image:age:sex:intro:)"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "init(name:image:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -798,8 +798,8 @@
             filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "442"
-            endingLineNumber = "442"
+            startingLineNumber = "580"
+            endingLineNumber = "580"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -894,8 +894,8 @@
             filePath = "IOS_Project_OnlineDating/Common/Observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
             landmarkName = "updateDB(user:liked:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1010,6 +1010,198 @@
             endingLineNumber = "39"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "23D5FF99-6656-41D7-8B1D-53E63523EB82"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "createMatchData(_:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "772DA05B-C2BE-41B6-AA57-05D332643724"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "createMatchData(_:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CCB97312-280C-428C-A90E-3A8EB4A8D3C0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "createMatchData(_:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "74A75FFA-7137-40EF-B094-B1D0F428A01A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "createMatchData(_:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "74A75FFA-7137-40EF-B094-B1D0F428A01A - 1af59d1465398f99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MeetNTUST.InfoView.createMatchData(_: Swift.String, matchSex: Swift.String, matchAgeFrom: Swift.Int, matchAgeTo: Swift.Int) -&gt; ()"
+                  moduleName = "MeetNTUST"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chianghongyun/Desktop/NewApp/IOS_Project_OnlineDating/Auth/InfoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "1608">
+               </Location>
+               <Location
+                  uuid = "74A75FFA-7137-40EF-B094-B1D0F428A01A - 52f1a45f7af503d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MeetNTUST.InfoView.createMatchData(_: Swift.String, matchSex: Swift.String, matchAgeFrom: Swift.Int, matchAgeTo: Swift.Int) -&gt; ()"
+                  moduleName = "MeetNTUST"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chianghongyun/Desktop/NewApp/IOS_Project_OnlineDating/Auth/InfoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "287">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83B4A40B-F058-4DA6-A8FA-1B2204A7BDEC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/InfoView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "createMatchData(_:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "875484A5-A52E-475A-A9A1-5006469EDD99"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "updateProfile(name:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5757EF44-27DE-4477-A0EF-1BA388517CD6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "updateProfile(name:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3B1C747-5098-4616-A77D-C1305BCFE6ED"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "updateProfile(name:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE730DEC-C44E-4B39-9554-E215313E56F3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "updateProfile(name:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80B4AE41-44F5-4088-959A-F69ECF716723"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS_Project_OnlineDating/Auth/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "updateProfile(name:age:sex:intro:matchSex:matchAgeFrom:matchAgeTo:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

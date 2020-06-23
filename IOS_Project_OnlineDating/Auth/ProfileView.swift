@@ -20,74 +20,6 @@ struct GeometryGetter: View {
     }
 }
 
-//final class KeyboardGuardian: ObservableObject {
-//    public var rects: Array<CGRect>
-//    public var keyboardRect: CGRect = CGRect()
-//
-//    // keyboardWillShow notification may be posted repeatedly,
-//    // this flag makes sure we only act once per keyboard appearance
-//    public var keyboardIsHidden = true
-//
-//    @Published var slide: CGFloat = 0
-//
-//    var showField: Int = 0 {
-//        didSet {
-//            updateSlide()
-//        }
-//    }
-//
-//    init(textFieldCount: Int) {
-//        self.rects = Array<CGRect>(repeating: CGRect(), count: textFieldCount)
-//
-//    }
-//
-//    func addObserver() {
-//NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
-//}
-//
-//func removeObserver() {
-// NotificationCenter.default.removeObserver(self)
-//}
-//
-//    deinit {
-//        NotificationCenter.default.removeObserver(self)
-//    }
-//
-//
-//
-//    @objc func keyBoardWillShow(notification: Notification) {
-//        if keyboardIsHidden {
-//            keyboardIsHidden = false
-//            if let rect = notification.userInfo?["UIKeyboardFrameEndUserInfoKey"] as? CGRect {
-//                keyboardRect = rect
-//                updateSlide()
-//            }
-//        }
-//    }
-//
-//    @objc func keyBoardDidHide(notification: Notification) {
-//        keyboardIsHidden = true
-//        updateSlide()
-//    }
-//
-//    func updateSlide() {
-//        if keyboardIsHidden {
-//            slide = 0
-//        } else {
-//            let tfRect = self.rects[self.showField]
-//            let diff = keyboardRect.minY - tfRect.maxY
-//
-//            if diff > 0 {
-//                slide += diff
-//            } else {
-//                slide += min(diff, 0)
-//            }
-//
-//        }
-//    }
-//}
-
 final class KeyboardResponder: ObservableObject {
     private var notificationCenter: NotificationCenter
     @Published private(set) var currentHeight: CGFloat = 0
@@ -149,32 +81,103 @@ struct Profile : View {
     
     @State var age = ""
     @State var intro = ""
+    @State var matchSex = "Both"
+    @State var matchAgeFrom = 0
+    @State var matchAgeTo = 99
     
-    func updateProfile(name:String,age:String,sex:String,intro:String){
+    func updateProfile(name:String,age:String,sex:String,intro:String,matchSex:String,matchAgeFrom:Int,matchAgeTo:Int){
         if(self.AlertTitle != "更新成功"){
             return
         }
 
         self.db.collection("users").document(self.obs.__THIS__.Uid).updateData([
             "name": name,
-            "age": age,
+            "age": Int(age),
             "sex": sex,
             "intro" : intro,
+            "matchSex" : matchSex,
+            "matchAgeFrom" : matchAgeFrom,
+            "matchAgeTo" : matchAgeTo,
+            
         ])
+        
+        if(self.obs.__THIS__.matchSex != matchSex || self.obs.__THIS__.matchAgeTo != matchAgeTo || self.obs.__THIS__.matchAgeFrom != matchAgeFrom){
+//            update match user
+            var sexArray = [String]()
+            if(matchSex == "Both"){
+                sexArray.append("Male")
+                sexArray.append("Female")
+            }
+            else{
+                sexArray.append(matchSex)
+            }
+            let currentMatchUsers = Array(self.obs.matchUsers.values)
+            var currentMatchUids = [String]()
+            for currentMatchUser in currentMatchUsers{
+                currentMatchUids.append(currentMatchUser.id)
+            }
+                
+            
+            db.collection("users").whereField("age", isLessThanOrEqualTo: matchAgeTo).whereField("age", isGreaterThanOrEqualTo: matchAgeFrom).whereField("sex", in: sexArray)
+                .getDocuments { (querySnapshot, error) in
+                if let querySnapshot = querySnapshot {
+                
+                    for document in querySnapshot.documents {
+                        print(document.data())
+                        if(self.obs.__THIS__.Uid != document.documentID){
+                            if(!currentMatchUids.contains(document.documentID)){
+                                self.db.collection("to_be_match").addDocument(data:
+                                    [
+                                        "match_status" : 0,
+                                        "create_time" : Date(),
+                                        "userA_id" : document.documentID,
+                                        "userA_status" : 0,
+                                        "userB_id" : self.obs.__THIS__.Uid,
+                                        "userB_status" : 0,
+                                        "update_time" : Date(),
+                                ])
+                            }
+                            
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
+        
         self.obs.__THIS__.Name = name
         self.obs.__THIS__.Age = age
         self.obs.__THIS__.Sex = sex
         self.obs.__THIS__.Intro  = intro
+        self.obs.__THIS__.matchSex = matchSex
+        self.obs.__THIS__.matchAgeTo = matchAgeTo
+        self.obs.__THIS__.matchAgeFrom = matchAgeFrom
     }
     
+    @State var width:CGFloat = 0
+    @State var width1: CGFloat = 50
+    var totalWidth  = UIScreen.main.bounds.width / 2
     
-    init(name:String,image:String, age:String,sex:String,intro:String){
+    init(name:String,image:String, age:String,sex:String,intro:String,matchSex:String,matchAgeFrom:Int,matchAgeTo:Int){
         print("name:" + name)
         print("image:" + image)
 
         self._name = State(initialValue: name ?? "")
         self._age = State(initialValue: age ?? "18")
         self._sex = State(initialValue: sex ?? "Male")
+        
+        self._matchSex = State(initialValue: matchSex ?? "Both")
+        self._matchAgeFrom = State(initialValue: matchAgeFrom ?? 0)
+        self._matchAgeTo = State(initialValue: matchAgeTo ?? 99)
+        
+        
+//        width / totalwidth * 100 = 99
+        let width_start = CGFloat(self.matchAgeFrom) / 100.0 * totalWidth
+        let width_end = CGFloat(self.matchAgeTo) / 100.0 * totalWidth
+        
+        self._width = State(initialValue: width_start)
+        self._width1 = State(initialValue: width_end)
         
         
         self._intro = State(initialValue: intro ?? "")
@@ -277,12 +280,12 @@ struct Profile : View {
                 
                 
                 
-                VStack(alignment: .leading){
+                VStack(alignment: .center){
                     
                     Text("Sex").font(.headline).fontWeight(.heavy).foregroundColor(Color.white.opacity(0.75))
                     
                     
-                    HStack{
+                    HStack(){
                         Button(action: {
                             
                             self.sex = "Male"
@@ -305,15 +308,108 @@ struct Profile : View {
                             .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,20)
                         
                             
-                    }.padding(.bottom,30)
+                    }
                     
                     Divider()
                 }
                 
+                VStack(alignment: .center){
+                    
+                    Text("條件篩選").font(.headline).fontWeight(.heavy).foregroundColor(Color.white.opacity(0.75)).padding(.bottom,20)
+
+                    VStack{
+                        HStack{
+                            Button(action: {
+                                self.matchSex = "Male"
+                                
+                            }){
+                                Text("男生").foregroundColor(.gray).padding().frame(width: 80,height: 40)
+                            }.background(matchSex == "Male" ? Color.white : Color.init("Color12") )
+                                .cornerRadius(40)
+                                .shadow(radius: 25)
+                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,25)
+                            
+                            Button(action: {
+                                
+                                self.matchSex = "Female"
+                            }){
+                                Text("女生").foregroundColor(.gray).padding().frame(width: 80,height: 40)
+                            }.background(matchSex == "Female" ? Color.white : Color.init("Color12") )
+                                .cornerRadius(40)
+                                .shadow(radius: 25)
+                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,25)
+                            
+                            
+                            Button(action: {
+                                
+                                self.matchSex = "Both"
+                            }){
+                                Text("都行").foregroundColor(.gray).padding().frame(width: 80,height: 40)
+                            }.background(matchSex == "Both" ? Color.white : Color.init("Color12") )
+                                .cornerRadius(40)
+                                .shadow(radius: 25)
+                                .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.init("Color3"),lineWidth: 3)).padding(.horizontal,25)
+
+                            }.padding(.bottom,10)
+   
+                }
                 
-                
-                
-                
+                VStack{
+                    
+                    ZStack(alignment: .leading) {
+                        Rectangle()
+                            .fill(Color.white.opacity(0.2))
+                            .frame(width:self.totalWidth+18 ,height:6)
+                            
+                        
+                        Rectangle()
+                        .fill(Color.white)
+                            .frame(width: self.width1 - self.width ,height: 6)
+                            .offset(x:self.width + 18)
+                        
+                        HStack(spacing: 0){
+                            
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width:18,height: 18)
+                                .offset(x:self.width)
+                                .gesture(
+                                    DragGesture().onChanged({(value) in
+                                        if(value.location.x >= 0 && value.location.x <= self.width1){
+                                            self.width = value.location.x
+                                        }
+                                        
+                                    })
+                            
+                            )
+                            
+                            Circle()
+                            .fill(Color.white)
+                            .frame(width:18,height: 18)
+                                .offset(x:self.width1)
+                            .gesture(
+                                    DragGesture().onChanged({(value) in
+                                        if(value.location.x <= self.totalWidth && value.location.x >= self.width){
+                                            self.width1 = value.location.x
+
+                                        }
+                                        
+                                    })
+                            
+                            )
+                        }
+                        
+                    }
+                    
+                    Text("\(Int(width/totalWidth*100)) - \(Int(width1/totalWidth*100))歲").fontWeight(.bold).foregroundColor(Color.white.opacity(0.75))
+                    
+
+                        
+                    }
+                    
+                    
+                }
+
             }.padding(.horizontal, 6)
             
             
@@ -393,7 +489,7 @@ struct Profile : View {
                         
                     }
                     
-                    self.updateProfile(name: self.name,age:self.age,sex:self.sex,intro: self.intro)
+                    self.updateProfile(name: self.name,age:self.age,sex:self.sex,intro: self.intro,matchSex: self.matchSex,matchAgeFrom: Int(self.width/self.totalWidth*100),matchAgeTo: Int(self.width1/self.totalWidth*100))
                     
                     
                 }) {

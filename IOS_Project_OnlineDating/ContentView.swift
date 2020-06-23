@@ -47,7 +47,9 @@ struct ContentView: View {
                 }
                 else if(self.obs.pageIndex == ENUM_CLASS.PAGES.INFO_PAGE){
                     TopView()
-                    Profile(name:self.obs.__THIS__.Name,image:self.obs.__THIS__.Image_,age: self.obs.__THIS__.Age,sex: self.obs.__THIS__.Sex, intro: self.obs.__THIS__.Intro)
+                    Profile(name:self.obs.__THIS__.Name,image:self.obs.__THIS__.Image_,age: self.obs.__THIS__.Age,sex: self.obs.__THIS__.Sex, intro: self.obs.__THIS__.Intro,
+                            matchSex: self.obs.__THIS__.matchSex,matchAgeFrom: self.obs.__THIS__.matchAgeFrom,
+                            matchAgeTo: self.obs.__THIS__.matchAgeTo)
                 }
                 
             }

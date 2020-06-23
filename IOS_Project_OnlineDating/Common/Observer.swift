@@ -212,7 +212,8 @@ class Observer: ObservableObject {
                                     let uid = userDocument.documentID
                                     let sex = userDocument.data()!["sex"] as? String ?? ""
                                     let image = userDocument.data()!["image"] as? String ?? ""
-                                    let age = userDocument.data()!["age"] as? String ?? ""
+                                    var _age = userDocument.data()!["age"] as? Int ?? 20
+                                    let age = String(_age)
                                     let name = userDocument.data()!["name"] as? String ?? ""
                                     let intro = userDocument.data()!["intro"] as? String ?? ""
                                     self.matchUsers[diff.document.documentID] = User(id: uid, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0, intro:intro, matchUid:diff.document.documentID)
@@ -233,7 +234,8 @@ class Observer: ObservableObject {
                                     let uid = userDocument.documentID
                                     let sex = userDocument.data()!["sex"] as? String ?? ""
                                     let image = userDocument.data()!["image"] as? String ?? ""
-                                    let age = userDocument.data()!["age"] as? String ?? ""
+                                    var _age = userDocument.data()!["age"] as? Int ?? 20
+                                    let age = String(_age)
                                     let name = userDocument.data()!["name"] as? String ?? ""
                                     let intro = userDocument.data()!["intro"] as? String ?? ""
                                     self.matchUsers[diff.document.documentID] = User(id: uid, name: name, image: image, age: age, sex: sex, swipe: 0, degree: 0, intro:intro, matchUid:diff.document.documentID)
@@ -257,7 +259,8 @@ class Observer: ObservableObject {
             (userDocument, error) in
             if let userDocument = userDocument, userDocument.exists {
                 let name = userDocument.get("name") as? String ?? ""
-                let age = userDocument.get("age") as? String ?? ""
+                var _age = userDocument.get("age") as? Int ?? 20
+                let age = String(_age)
                 let image = userDocument.get("image") as? String ?? ""
                 let sex = userDocument.get("sex") as? String ?? ""
                 let intro = userDocument.get("intro") as? String ?? ""
@@ -334,30 +337,30 @@ class Observer: ObservableObject {
         }
     }
     
-    func reloadThis() -> Bool{
-        
-        let myGroup = DispatchGroup()
-        if __THIS__.Uid == "" || users.count == 0{
-            return false
-        }
-        else{
-            myGroup.enter()
-            for j in 0..<self.users.count{
-                if self.users[j].id == self.__THIS__.Uid{
-                    
-                    self.__THIS__.SetThis(id_: self.users[j].id, uid: self.users[j].id, name: self.users[j].name, age: self.users[j].age, image: self.users[j].image, sex: self.users[j].sex, intro: self.users[j].intro)
-                    print("Find self : \(self.__THIS__)")
-                    self.users.remove(at: j)
-                    break
-                }
-                
-            }
-            myGroup.leave()
-            pageIndex =
-                ENUM_CLASS.PAGES.SWIPE_PAGE
-            return true
-        }
-    }
+//    func reloadThis() -> Bool{
+//        
+//        let myGroup = DispatchGroup()
+//        if __THIS__.Uid == "" || users.count == 0{
+//            return false
+//        }
+//        else{
+//            myGroup.enter()
+//            for j in 0..<self.users.count{
+//                if self.users[j].id == self.__THIS__.Uid{
+//                    
+//                    self.__THIS__.SetThis(id_: self.users[j].id, uid: self.users[j].id, name: self.users[j].name, age: self.users[j].age, image: self.users[j].image, sex: self.users[j].sex, intro: self.users[j].intro)
+//                    print("Find self : \(self.__THIS__)")
+//                    self.users.remove(at: j)
+//                    break
+//                }
+//                
+//            }
+//            myGroup.leave()
+//            pageIndex =
+//                ENUM_CLASS.PAGES.SWIPE_PAGE
+//            return true
+//        }
+//    }
     
     //
     func loadRelationship(){
